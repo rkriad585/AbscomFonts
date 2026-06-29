@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Elements - AbscomFonts</title>
+  <script src="../dist/abscomfonts.iife.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; }
+    .container { max-width: 600px; margin: 0 auto; }
+    h1 { text-align: center; margin-bottom: .5rem; font-size: 2rem; color: #f8fafc; }
+    .subtitle { text-align: center; color: #64748b; margin-bottom: 2rem; }
+    .card { background: #1e293b; border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; }
+    h2 { font-size: 1rem; color: #94a3b8; margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    label { display: block; font-size: .85rem; color: #94a3b8; margin-bottom: .4rem; }
+    .input-wrap { position: relative; display: flex; align-items: center; }
+    .input-wrap i { position: absolute; left: 12px; color: #64748b; pointer-events: none; }
+    .input-wrap input, .input-wrap select, .input-wrap textarea {
+      width: 100%; padding: .75rem 1rem .75rem 2.5rem; border-radius: 8px;
+      border: 1px solid #334155; background: #0f172a; color: #e2e8f0;
+      font-size: .9rem; outline: none; transition: border-color .2s;
+    }
+    .input-wrap textarea { padding-top: .75rem; resize: vertical; min-height: 80px; }
+    .input-wrap input:focus, .input-wrap select:focus, .input-wrap textarea:focus { border-color: #6366f1; }
+    .input-wrap select { appearance: none; padding-right: 2.5rem; }
+    .input-wrap .select-arrow { position: absolute; right: 12px; color: #64748b; pointer-events: none; }
+    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 1.5rem; border-radius: 8px; border: none; cursor: pointer; font-size: .9rem; transition: transform .15s, box-shadow .15s; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.3); }
+    .btn:active { transform: translateY(0); }
+    .row { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .toggle { display: flex; align-items: center; gap: .5rem; cursor: pointer; }
+    .toggle input { display: none; }
+    .toggle .slider { width: 40px; height: 22px; background: #334155; border-radius: 11px; position: relative; transition: background .2s; }
+    .toggle .slider::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; background: #64748b; border-radius: 50%; transition: all .2s; }
+    .toggle input:checked + .slider { background: #6366f1; }
+    .toggle input:checked + .slider::after { left: 21px; background: #fff; }
+    .checkbox-group { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .checkbox-label { display: flex; align-items: center; gap: .5rem; cursor: pointer; font-size: .85rem; color: #94a3b8; }
+    .checkbox-label input { accent-color: #6366f1; width: 16px; height: 16px; }
+    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: #22c55e; color: #fff; padding: .75rem 1.5rem; border-radius: 8px; font-size: .9rem; opacity: 0; transition: all .3s; z-index: 9999; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Form Elements</h1>
+    <p class="subtitle">Icons inside form inputs and buttons</p>
+
+    <div class="card">
+      <h2><i class="abs abs-user abs-blue-400"></i> Personal Info</h2>
+      <div class="form-group">
+        <label>Full Name</label>
+        <div class="input-wrap"><i class="abs abs-user"></i><input type="text" placeholder="John Doe"></div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <div class="input-wrap"><i class="abs abs-envelope"></i><input type="email" placeholder="john@example.com"></div>
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <div class="input-wrap"><i class="abs abs-phone"></i><input type="tel" placeholder="+1 234 567 890"></div>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <div class="input-wrap"><i class="abs abs-lock"></i><input type="password" placeholder="••••••••"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><i class="abs abs-map-pin abs-green-400"></i> Address</h2>
+      <div class="form-group">
+        <label>Address</label>
+        <div class="input-wrap"><i class="abs abs-home"></i><input type="text" placeholder="123 Main St"></div>
+      </div>
+      <div class="row">
+        <div class="form-group" style="flex:1;">
+          <label>City</label>
+          <div class="input-wrap"><i class="abs abs-building"></i><input type="text" placeholder="New York"></div>
+        </div>
+        <div class="form-group" style="flex:1;">
+          <label>Country</label>
+          <div class="input-wrap">
+            <i class="abs abs-globe"></i>
+            <select><option>United States</option><option>Canada</option><option>UK</option><option>Germany</option></select>
+            <i class="abs abs-chevron-down select-arrow"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><i class="abs abs-heart abs-pink-400"></i> Preferences</h2>
+      <div class="form-group">
+        <label>Notifications</label>
+        <div class="checkbox-group">
+          <label class="checkbox-label"><input type="checkbox" checked><i class="abs abs-bell abs-xs"></i> Email</label>
+          <label class="checkbox-label"><input type="checkbox"><i class="abs abs-phone abs-xs"></i> SMS</label>
+          <label class="checkbox-label"><input type="checkbox" checked><i class="abs abs-bell abs-xs"></i> Push</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Newsletter</label>
+        <label class="toggle">
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+          <span style="font-size:.85rem;color:#94a3b8;">Receive weekly updates</span>
+        </label>
+      </div>
+      <div class="form-group">
+        <label>Dark Mode</label>
+        <label class="toggle">
+          <input type="checkbox">
+          <span class="slider"></span>
+          <span style="font-size:.85rem;color:#94a3b8;">Enable dark theme</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><i class="abs abs-comment abs-cyan-400"></i> Feedback</h2>
+      <div class="form-group">
+        <label>Message</label>
+        <div class="input-wrap"><i class="abs abs-pencil"></i><textarea placeholder="Write your message..."></textarea></div>
+      </div>
+      <div class="row">
+        <button class="btn bg-blue-500 abs-white"><i class="abs abs-paper-plane"></i> Send</button>
+        <button class="btn" style="background: #334155; color: #e2e8f0;"><i class="abs abs-trash"></i> Clear</button>
+        <button class="btn" style="background: #334155; color: #e2e8f0;"><i class="abs abs-save"></i> Save Draft</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><i class="abs abs-search abs-purple-400"></i> Search & Filters</h2>
+      <div class="row">
+        <div class="form-group" style="flex:2;">
+          <div class="input-wrap"><i class="abs abs-search"></i><input type="search" placeholder="Search..."></div>
+        </div>
+        <div class="form-group" style="flex:1;">
+          <div class="input-wrap">
+            <i class="abs abs-filter"></i>
+            <select><option>All</option><option>Active</option><option>Archived</option></select>
+            <i class="abs abs-chevron-down select-arrow"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: .5rem;">
+        <button class="btn" style="background: #334155; color: #e2e8f0;"><i class="abs abs-calendar"></i> Date</button>
+        <button class="btn" style="background: #334155; color: #e2e8f0;"><i class="abs abs-tag"></i> Category</button>
+        <button class="btn" style="background: #334155; color: #e2e8f0;"><i class="abs abs-star"></i> Rating</button>
+        <button class="btn bg-red-500 abs-white"><i class="abs abs-xmark"></i> Clear All</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; color: #475569; font-size: .85rem; margin-top: 1rem;">
+      Click any icon above to copy its class
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    function copyToClipboard(text) {
+      const toast = document.getElementById('toast');
+      const show = () => { toast.textContent = 'Copied: ' + text; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(show);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        show();
+      }
+    }
+    document.querySelectorAll('.input-wrap i, .btn i, .checkbox-label i, h2 i').forEach(el => {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        copyToClipboard(el.className);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Cards - AbscomFonts</title>
+  <script src="../dist/abscomfonts.iife.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; }
+    h1 { text-align: center; margin-bottom: .5rem; font-size: 2rem; color: #f8fafc; }
+    .subtitle { text-align: center; color: #64748b; margin-bottom: 3rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 960px; margin: 0 auto; }
+
+    .card { background: #1e293b; border-radius: 16px; overflow: hidden; transition: transform .2s, box-shadow .2s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,.3); }
+
+    .card-header { padding: 1.5rem; text-align: center; }
+    .card-header i { font-size: 3rem; }
+    .card-body { padding: 0 1.5rem 1rem; text-align: center; }
+    .card-body h3 { font-size: 1.1rem; margin-bottom: .3rem; }
+    .card-body p { font-size: .85rem; color: #64748b; margin-bottom: 1rem; }
+    .card-footer { padding: 1rem 1.5rem; border-top: 1px solid #334155; display: flex; justify-content: center; gap: 1rem; }
+    .card-footer i { cursor: pointer; font-size: 1.2rem; color: #64748b; transition: color .2s, transform .1s; }
+    .card-footer i:hover { color: #e2e8f0; transform: scale(1.2); }
+    .card-footer i:active { transform: scale(.9); }
+    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: .85rem; transition: transform .15s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+
+    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: #22c55e; color: #fff; padding: .75rem 1.5rem; border-radius: 8px; font-size: .9rem; opacity: 0; transition: all .3s; z-index: 9999; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <h1>Social Cards</h1>
+  <p class="subtitle">Brand icon cards with click-to-copy</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-header" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+        <i class="abs abs-github abs-4x abs-white"></i>
+      </div>
+      <div class="card-body">
+        <h3>GitHub</h3>
+        <p>Host, review, and manage code repositories</p>
+        <button class="btn" style="background: #334155; color: #e2e8f0; cursor: pointer;" data-class="abs abs-github"><i class="abs abs-copy"></i> Copy Class</button>
+      </div>
+      <div class="card-footer">
+        <i class="abs abs-heart" data-class="abs abs-heart"></i>
+        <i class="abs abs-star" data-class="abs abs-star"></i>
+        <i class="abs abs-share" data-class="abs abs-share"></i>
+        <i class="abs abs-bookmark" data-class="abs abs-bookmark"></i>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background: linear-gradient(135deg, #1da1f2, #0d8bd9);">
+        <i class="abs abs-twitter abs-4x abs-white"></i>
+      </div>
+      <div class="card-body">
+        <h3>Twitter / X</h3>
+        <p>Social networking and microblogging</p>
+        <button class="btn" style="background: #334155; color: #e2e8f0; cursor: pointer;" data-class="abs abs-twitter"><i class="abs abs-copy"></i> Copy Class</button>
+      </div>
+      <div class="card-footer">
+        <i class="abs abs-heart" data-class="abs abs-heart"></i>
+        <i class="abs abs-star" data-class="abs abs-star"></i>
+        <i class="abs abs-share" data-class="abs abs-share"></i>
+        <i class="abs abs-bookmark" data-class="abs abs-bookmark"></i>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background: linear-gradient(135deg, #e4405f, #c13584);">
+        <i class="abs abs-instagram abs-4x abs-white"></i>
+      </div>
+      <div class="card-body">
+        <h3>Instagram</h3>
+        <p>Photo and video sharing social network</p>
+        <button class="btn" style="background: #334155; color: #e2e8f0; cursor: pointer;" data-class="abs abs-instagram"><i class="abs abs-copy"></i> Copy Class</button>
+      </div>
+      <div class="card-footer">
+        <i class="abs abs-heart" data-class="abs abs-heart"></i>
+        <i class="abs abs-star" data-class="abs abs-star"></i>
+        <i class="abs abs-share" data-class="abs abs-share"></i>
+        <i class="abs abs-bookmark" data-class="abs abs-bookmark"></i>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background: linear-gradient(135deg, #0077b5, #005e8a);">
+        <i class="abs abs-linkedin abs-4x abs-white"></i>
+      </div>
+      <div class="card-body">
+        <h3>LinkedIn</h3>
+        <p>Professional networking platform</p>
+        <button class="btn" style="background: #334155; color: #e2e8f0; cursor: pointer;" data-class="abs abs-linkedin"><i class="abs abs-copy"></i> Copy Class</button>
+      </div>
+      <div class="card-footer">
+        <i class="abs abs-heart" data-class="abs abs-heart"></i>
+        <i class="abs abs-star" data-class="abs abs-star"></i>
+        <i class="abs abs-share" data-class="abs abs-share"></i>
+        <i class="abs abs-bookmark" data-class="abs abs-bookmark"></i>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background: linear-gradient(135deg, #ff4500, #cc3700);">
+        <i class="abs abs-youtube abs-4x abs-white"></i>
+      </div>
+      <div class="card-body">
+        <h3>YouTube</h3>
+        <p>Video sharing and streaming platform</p>
+        <button class="btn" style="background: #334155; color: #e2e8f0; cursor: pointer;" data-class="abs abs-youtube"><i class="abs abs-copy"></i> Copy Class</button>
+      </div>
+      <div class="card-footer">
+        <i class="abs abs-heart" data-class="abs abs-heart"></i>
+        <i class="abs abs-star" data-class="abs abs-star"></i>
+        <i class="abs abs-share" data-class="abs abs-share"></i>
+        <i class="abs abs-bookmark" data-class="abs abs-bookmark"></i>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" style="background: linear-gradient(135deg, #5865f2, #4752c4);">
+        <i class="abs abs-discord abs-4x abs-white"></i>
+      </div>
+      <div class="card-body">
+        <h3>Discord</h3>
+        <p>Voice, video, and text chat platform</p>
+        <button class="btn" style="background: #334155; color: #e2e8f0; cursor: pointer;" data-class="abs abs-discord"><i class="abs abs-copy"></i> Copy Class</button>
+      </div>
+      <div class="card-footer">
+        <i class="abs abs-heart" data-class="abs abs-heart"></i>
+        <i class="abs abs-star" data-class="abs abs-star"></i>
+        <i class="abs abs-share" data-class="abs abs-share"></i>
+        <i class="abs abs-bookmark" data-class="abs abs-bookmark"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    function copyToClipboard(text) {
+      const toast = document.getElementById('toast');
+      const show = () => { toast.textContent = 'Copied: ' + text; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(show);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        show();
+      }
+    }
+
+    document.querySelectorAll('[data-class]').forEach(el => {
+      el.addEventListener('click', () => copyToClipboard(el.dataset.class));
+    });
+  </script>
+</body>
+</html>

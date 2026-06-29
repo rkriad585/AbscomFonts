@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Showcase - AbscomFonts</title>
+  <script src="../dist/abscomfonts.iife.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; }
+    h1 { text-align: center; margin-bottom: .5rem; font-size: 2rem; color: #f8fafc; }
+    .subtitle { text-align: center; color: #64748b; margin-bottom: 2rem; }
+    h2 { margin: 2rem 0 1rem; color: #94a3b8; border-bottom: 1px solid #1e293b; padding-bottom: .5rem; }
+    .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: .5rem; }
+    .swatch { border-radius: 6px; padding: .75rem .5rem; text-align: center; font-size: .7rem; cursor: pointer; transition: transform .1s; }
+    .swatch:active { transform: scale(.95); }
+    .swatch span { display: block; margin-top: .25rem; opacity: .7; }
+    .icon-row { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+    .icon-row > div { text-align: center; cursor: pointer; transition: transform .1s; }
+    .icon-row > div:active { transform: scale(.95); }
+    .icon-row > div span { display: block; font-size: .7rem; color: #64748b; margin-top: .25rem; }
+    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: #22c55e; color: #fff; padding: .75rem 1.5rem; border-radius: 8px; font-size: .9rem; opacity: 0; transition: all .3s; z-index: 9999; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <h1>Color Showcase</h1>
+  <p class="subtitle">Click any icon to copy its class name</p>
+
+  <div id="palette"></div>
+
+  <h2>Icons with Color</h2>
+  <div class="icon-row">
+    <div data-class="abs abs-heart abs-3x abs-red-500"><i class="abs abs-heart abs-3x abs-red-500"></i><span>abs-red-500</span></div>
+    <div data-class="abs abs-star abs-3x abs-yellow-400"><i class="abs abs-star abs-3x abs-yellow-400"></i><span>abs-yellow-400</span></div>
+    <div data-class="abs abs-heart abs-3x abs-green-500"><i class="abs abs-heart abs-3x abs-green-500"></i><span>abs-green-500</span></div>
+    <div data-class="abs abs-star abs-3x abs-blue-500"><i class="abs abs-star abs-3x abs-blue-500"></i><span>abs-blue-500</span></div>
+    <div data-class="abs abs-heart abs-3x abs-purple-500"><i class="abs abs-heart abs-3x abs-purple-500"></i><span>abs-purple-500</span></div>
+    <div data-class="abs abs-star abs-3x abs-pink-500"><i class="abs abs-star abs-3x abs-pink-500"></i><span>abs-pink-500</span></div>
+    <div data-class="abs abs-heart abs-3x abs-teal-500"><i class="abs abs-heart abs-3x abs-teal-500"></i><span>abs-teal-500</span></div>
+    <div data-class="abs abs-star abs-3x abs-orange-500"><i class="abs abs-star abs-3x abs-orange-500"></i><span>abs-orange-500</span></div>
+    <div data-class="abs abs-heart abs-3x abs-cyan-500"><i class="abs abs-heart abs-3x abs-cyan-500"></i><span>abs-cyan-500</span></div>
+    <div data-class="abs abs-star abs-3x abs-emerald-500"><i class="abs abs-star abs-3x abs-emerald-500"></i><span>abs-emerald-500</span></div>
+    <div data-class="abs abs-heart abs-3x abs-indigo-500"><i class="abs abs-heart abs-3x abs-indigo-500"></i><span>abs-indigo-500</span></div>
+    <div data-class="abs abs-star abs-3x abs-rose-500"><i class="abs abs-star abs-3x abs-rose-500"></i><span>abs-rose-500</span></div>
+  </div>
+
+  <h2>Shade Variations (Red)</h2>
+  <div class="icon-row" id="shade-row">
+    <div data-class="abs abs-heart abs-3x abs-red-50"><i class="abs abs-heart abs-3x abs-red-50"></i><span>50</span></div>
+    <div data-class="abs abs-heart abs-3x abs-red-100"><i class="abs abs-heart abs-3x abs-red-100"></i><span>100</span></div>
+    <div data-class="abs abs-heart abs-3x abs-red-200"><i class="abs abs-heart abs-3x abs-red-200"></i><span>200</span></div>
+    <div data-class="abs abs-heart abs-3x abs-red-300"><i class="abs abs-heart abs-3x abs-red-300"></i><span>300</span></div>
+    <div data-class="abs abs-heart abs-3x abs-red-400"><i class="abs abs-heart abs-3x abs-red-400"></i><span>400</span></div>
+    <div data-class="abs abs-heart abs-3x abs-red-500"><i class="abs abs-heart abs-3x abs-red-500"></i><span>500</span></div>
+    <div data-class="abs abs-heart abs-3x abs-red-600"><i class="abs abs-heart abs-3x abs-red-600"></i><span>600</span></div>
+    <div data-class="abs abs-heart abs-3x abs-red-700"><i class="abs abs-heart abs-3x abs-red-700"></i><span>700</span></div>
+    <div data-class="abs abs-heart abs-3x abs-red-800"><i class="abs abs-heart abs-3x abs-red-800"></i><span>800</span></div>
+    <div data-class="abs abs-heart abs-3x abs-red-900"><i class="abs abs-heart abs-3x abs-red-900"></i><span>900</span></div>
+    <div data-class="abs abs-heart abs-3x abs-red-950"><i class="abs abs-heart abs-3x abs-red-950"></i><span>950</span></div>
+  </div>
+
+  <h2>Background Colors</h2>
+  <div id="bg-row" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+    <div class="bg-red-500" style="padding: 1rem 2rem; border-radius: 8px; cursor: pointer;" data-class="abs abs-heart abs-white abs-2x"><i class="abs abs-heart abs-white abs-2x"></i></div>
+    <div class="bg-blue-500" style="padding: 1rem 2rem; border-radius: 8px; cursor: pointer;" data-class="abs abs-star abs-white abs-2x"><i class="abs abs-star abs-white abs-2x"></i></div>
+    <div class="bg-green-500" style="padding: 1rem 2rem; border-radius: 8px; cursor: pointer;" data-class="abs abs-check abs-white abs-2x"><i class="abs abs-check abs-white abs-2x"></i></div>
+    <div class="bg-purple-500" style="padding: 1rem 2rem; border-radius: 8px; cursor: pointer;" data-class="abs abs-cog abs-white abs-2x"><i class="abs abs-cog abs-white abs-2x"></i></div>
+    <div class="bg-yellow-400" style="padding: 1rem 2rem; border-radius: 8px; cursor: pointer;" data-class="abs abs-star abs-black abs-2x"><i class="abs abs-star abs-black abs-2x"></i></div>
+    <div class="bg-pink-500" style="padding: 1rem 2rem; border-radius: 8px; cursor: pointer;" data-class="abs abs-heart abs-white abs-2x"><i class="abs abs-heart abs-white abs-2x"></i></div>
+    <div class="bg-teal-500" style="padding: 1rem 2rem; border-radius: 8px; cursor: pointer;" data-class="abs abs-check abs-white abs-2x"><i class="abs abs-check abs-white abs-2x"></i></div>
+    <div class="bg-gray-800" style="padding: 1rem 2rem; border-radius: 8px; cursor: pointer;" data-class="abs abs-star abs-yellow-400 abs-2x"><i class="abs abs-star abs-yellow-400 abs-2x"></i></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    function copyToClipboard(text) {
+      const toast = document.getElementById('toast');
+      const show = () => { toast.textContent = 'Copied: ' + text; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(show);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        show();
+      }
+    }
+    function copy(el) {
+      const cls = el.dataset.class;
+      if (!cls) return;
+      copyToClipboard(cls);
+    }
+
+    document.querySelectorAll('[data-class]').forEach(el => {
+      el.addEventListener('click', () => copy(el));
+    });
+
+    const colors = ['slate','gray','zinc','neutral','stone','red','orange','amber','yellow','lime','green','emerald','teal','cyan','sky','blue','indigo','violet','purple','fuchsia','pink','rose'];
+    const shades = [50,100,200,300,400,500,600,700,800,900,950];
+    const palette = document.getElementById('palette');
+
+    for (const color of colors) {
+      const h2 = document.createElement('h2');
+      h2.textContent = color;
+      palette.appendChild(h2);
+
+      const grid = document.createElement('div');
+      grid.className = 'swatch-grid';
+
+      for (const shade of shades) {
+        const swatch = document.createElement('div');
+        swatch.className = `swatch bg-${color}-${shade}`;
+        swatch.dataset.class = `abs abs-heart abs-white`;
+        swatch.innerHTML = `<i class="abs abs-heart abs-white"></i><span>${shade}</span>`;
+        swatch.addEventListener('click', () => copy(swatch));
+        grid.appendChild(swatch);
+      }
+      palette.appendChild(grid);
+    }
+  </script>
+</body>
+</html>

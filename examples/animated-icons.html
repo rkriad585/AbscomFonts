@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Icons - AbscomFonts</title>
+  <script src="../dist/abscomfonts.iife.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; }
+    h1 { text-align: center; margin-bottom: 2rem; font-size: 2rem; color: #f8fafc; }
+    h2 { margin: 2rem 0 1rem; color: #94a3b8; font-size: 1.2rem; border-bottom: 1px solid #1e293b; padding-bottom: .5rem; }
+    .subtitle { text-align: center; color: #64748b; margin-bottom: 2rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; }
+    .card { background: #1e293b; border-radius: 8px; padding: 1.5rem; text-align: center; cursor: pointer; transition: background .2s, transform .1s; }
+    .card:hover { background: #334155; transform: scale(1.05); }
+    .card:active { transform: scale(.95); }
+    .card span { display: block; margin-top: 1rem; font-size: .8rem; color: #64748b; }
+    .card small { display: block; font-size: .65rem; color: #475569; margin-top: .25rem; }
+    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: #22c55e; color: #fff; padding: .75rem 1.5rem; border-radius: 8px; font-size: .9rem; opacity: 0; transition: all .3s; z-index: 9999; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <h1>Animated Icons</h1>
+  <p class="subtitle">Click any icon to copy its class name</p>
+
+  <h2>Motion Animations</h2>
+  <div class="grid">
+    <div class="card" data-class='abs abs-spinner abs-spin abs-3x abs-blue-400'><i class="abs abs-spinner abs-spin abs-3x abs-blue-400"></i><span>abs-spin</span><small>abs-spinner</small></div>
+    <div class="card" data-class='abs abs-sync abs-spin abs-3x abs-green-400'><i class="abs abs-sync abs-spin abs-3x abs-green-400"></i><span>abs-spin</span><small>abs-sync</small></div>
+    <div class="card" data-class='abs abs-spinner abs-spin-reverse abs-3x abs-purple-400'><i class="abs abs-spinner abs-spin-reverse abs-3x abs-purple-400"></i><span>abs-spin-reverse</span><small>abs-spinner</small></div>
+    <div class="card" data-class='abs abs-bell abs-bounce abs-3x abs-yellow-400'><i class="abs abs-bell abs-bounce abs-3x abs-yellow-400"></i><span>abs-bounce</span><small>abs-bell</small></div>
+    <div class="card" data-class='abs abs-arrow-down abs-bounce abs-3x abs-cyan-400'><i class="abs abs-arrow-down abs-bounce abs-3x abs-cyan-400"></i><span>abs-bounce</span><small>abs-arrow-down</small></div>
+    <div class="card" data-class='abs abs-cog abs-wobble abs-3x abs-orange-400'><i class="abs abs-cog abs-wobble abs-3x abs-orange-400"></i><span>abs-wobble</span><small>abs-cog</small></div>
+    <div class="card" data-class='abs abs-heart abs-pulse abs-3x abs-red-400'><i class="abs abs-heart abs-pulse abs-3x abs-red-400"></i><span>abs-pulse</span><small>abs-heart</small></div>
+    <div class="card" data-class='abs abs-warning abs-pulse abs-3x abs-rose-400'><i class="abs abs-warning abs-pulse abs-3x abs-rose-400"></i><span>abs-pulse</span><small>abs-warning</small></div>
+    <div class="card" data-class='abs abs-bell abs-shake abs-3x abs-amber-400'><i class="abs abs-bell abs-shake abs-3x abs-amber-400"></i><span>abs-shake</span><small>abs-bell</small></div>
+    <div class="card" data-class='abs abs-warning abs-shake abs-3x abs-red-400'><i class="abs abs-warning abs-shake abs-3x abs-red-400"></i><span>abs-shake</span><small>abs-warning</small></div>
+    <div class="card" data-class='abs abs-heart abs-float abs-3x abs-pink-400'><i class="abs abs-heart abs-float abs-3x abs-pink-400"></i><span>abs-float</span><small>abs-heart</small></div>
+    <div class="card" data-class='abs abs-bell abs-swing abs-3x abs-indigo-400'><i class="abs abs-bell abs-swing abs-3x abs-indigo-400"></i><span>abs-swing</span><small>abs-bell</small></div>
+  </div>
+
+  <h2>Visual Effects</h2>
+  <div class="grid">
+    <div class="card" data-class='abs abs-star abs-rgb-change abs-3x'><i class="abs abs-star abs-rgb-change abs-3x"></i><span>abs-rgb-change</span><small>abs-star</small></div>
+    <div class="card" data-class='abs abs-heart abs-rgb-change abs-3x'><i class="abs abs-heart abs-rgb-change abs-3x"></i><span>abs-rgb-change</span><small>abs-heart</small></div>
+    <div class="card" data-class='abs abs-star abs-glow-gold abs-3x'><i class="abs abs-star abs-glow-gold abs-3x"></i><span>abs-glow-gold</span><small>abs-star</small></div>
+    <div class="card" data-class='abs abs-star abs-rainbow abs-3x'><i class="abs abs-star abs-rainbow abs-3x"></i><span>abs-rainbow</span><small>abs-star</small></div>
+    <div class="card" data-class='abs abs-heart abs-fade abs-3x abs-red-400'><i class="abs abs-heart abs-fade abs-3x abs-red-400"></i><span>abs-fade</span><small>abs-heart</small></div>
+    <div class="card" data-class='abs abs-star abs-zoom abs-3x abs-yellow-400'><i class="abs abs-star abs-zoom abs-3x abs-yellow-400"></i><span>abs-zoom</span><small>abs-star</small></div>
+    <div class="card" data-class='abs abs-heart abs-jelly abs-3x abs-pink-400'><i class="abs abs-heart abs-jelly abs-3x abs-pink-400"></i><span>abs-jelly</span><small>abs-heart</small></div>
+    <div class="card" data-class='abs abs-phone abs-vibrate abs-3x abs-green-400'><i class="abs abs-phone abs-vibrate abs-3x abs-green-400"></i><span>abs-vibrate</span><small>abs-phone</small></div>
+  </div>
+
+  <h2>Movement</h2>
+  <div class="grid">
+    <div class="card" data-class='abs abs-arrow-right abs-slide abs-3x abs-blue-400'><i class="abs abs-arrow-right abs-slide abs-3x abs-blue-400"></i><span>abs-slide</span><small>abs-arrow-right</small></div>
+    <div class="card" data-class='abs abs-arrow-down abs-slide-up-down abs-3x abs-cyan-400'><i class="abs abs-arrow-down abs-slide-up-down abs-3x abs-cyan-400"></i><span>abs-slide-up-down</span><small>abs-arrow-down</small></div>
+    <div class="card" data-class='abs abs-cog abs-skew abs-3x abs-orange-400'><i class="abs abs-cog abs-skew abs-3x abs-orange-400"></i><span>abs-skew</span><small>abs-cog</small></div>
+    <div class="card" data-class='abs abs-camera abs-flip abs-3x abs-teal-400'><i class="abs abs-camera abs-flip abs-3x abs-teal-400"></i><span>abs-flip</span><small>abs-camera</small></div>
+    <div class="card" data-class='abs abs-cube abs-rotate3d abs-3x abs-violet-400'><i class="abs abs-cube abs-rotate3d abs-3x abs-violet-400"></i><span>abs-rotate3d</span><small>abs-cube</small></div>
+    <div class="card" data-class='abs abs-lightbulb abs-blink abs-3x abs-amber-400'><i class="abs abs-lightbulb abs-blink abs-3x abs-amber-400"></i><span>abs-blink</span><small>abs-lightbulb</small></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    function copyToClipboard(text) {
+      const toast = document.getElementById('toast');
+      const show = () => { toast.textContent = 'Copied: ' + text; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(show);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        show();
+      }
+    }
+    document.querySelectorAll('.card').forEach(el => {
+      el.addEventListener('click', () => copyToClipboard(el.dataset.class));
+    });
+  </script>
+</body>
+</html>

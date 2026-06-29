@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Icons - AbscomFonts</title>
+  <script src="../dist/abscomfonts.iife.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; }
+    h1 { text-align: center; margin-bottom: 2rem; font-size: 2rem; color: #f8fafc; }
+    h2 { margin: 2rem 0 1rem; color: #94a3b8; font-size: 1.2rem; border-bottom: 1px solid #1e293b; padding-bottom: .5rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 1rem; }
+    .card { background: #1e293b; border-radius: 8px; padding: 1.5rem; text-align: center; cursor: pointer; transition: background .2s, transform .1s; }
+    .card:hover { background: #334155; transform: scale(1.05); }
+    .card:active { transform: scale(.95); }
+    .card span { display: block; margin-top: .5rem; font-size: .75rem; color: #64748b; word-break: break-all; }
+    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: #22c55e; color: #fff; padding: .75rem 1.5rem; border-radius: 8px; font-size: .9rem; opacity: 0; transition: all .3s; z-index: 9999; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <h1>Basic Icons</h1>
+  <p style="text-align:center;color:#64748b;margin-bottom:2rem;">Click any icon to copy its class name</p>
+
+  <h2>UI Icons</h2>
+  <div class="grid">
+    <div class="card" data-class="abs abs-heart"><i class="abs abs-heart abs-3x"></i><span>abs-heart</span></div>
+    <div class="card" data-class="abs abs-star"><i class="abs abs-star abs-3x"></i><span>abs-star</span></div>
+    <div class="card" data-class="abs abs-home"><i class="abs abs-home abs-3x"></i><span>abs-home</span></div>
+    <div class="card" data-class="abs abs-user"><i class="abs abs-user abs-3x"></i><span>abs-user</span></div>
+    <div class="card" data-class="abs abs-camera"><i class="abs abs-camera abs-3x"></i><span>abs-camera</span></div>
+    <div class="card" data-class="abs abs-bell"><i class="abs abs-bell abs-3x"></i><span>abs-bell</span></div>
+    <div class="card" data-class="abs abs-envelope"><i class="abs abs-envelope abs-3x"></i><span>abs-envelope</span></div>
+    <div class="card" data-class="abs abs-phone"><i class="abs abs-phone abs-3x"></i><span>abs-phone</span></div>
+    <div class="card" data-class="abs abs-search"><i class="abs abs-search abs-3x"></i><span>abs-search</span></div>
+    <div class="card" data-class="abs abs-download"><i class="abs abs-download abs-3x"></i><span>abs-download</span></div>
+    <div class="card" data-class="abs abs-upload"><i class="abs abs-upload abs-3x"></i><span>abs-upload</span></div>
+    <div class="card" data-class="abs abs-trash"><i class="abs abs-trash abs-3x"></i><span>abs-trash</span></div>
+    <div class="card" data-class="abs abs-cog"><i class="abs abs-cog abs-3x"></i><span>abs-cog</span></div>
+    <div class="card" data-class="abs abs-lock"><i class="abs abs-lock abs-3x"></i><span>abs-lock</span></div>
+    <div class="card" data-class="abs abs-calendar"><i class="abs abs-calendar abs-3x"></i><span>abs-calendar</span></div>
+    <div class="card" data-class="abs abs-clock"><i class="abs abs-clock abs-3x"></i><span>abs-clock</span></div>
+  </div>
+
+  <h2>Arrows</h2>
+  <div class="grid">
+    <div class="card" data-class="abs abs-arrow-right"><i class="abs abs-arrow-right abs-3x"></i><span>abs-arrow-right</span></div>
+    <div class="card" data-class="abs abs-arrow-left"><i class="abs abs-arrow-left abs-3x"></i><span>abs-arrow-left</span></div>
+    <div class="card" data-class="abs abs-arrow-up"><i class="abs abs-arrow-up abs-3x"></i><span>abs-arrow-up</span></div>
+    <div class="card" data-class="abs abs-arrow-down"><i class="abs abs-arrow-down abs-3x"></i><span>abs-arrow-down</span></div>
+    <div class="card" data-class="abs abs-chevron-right"><i class="abs abs-chevron-right abs-3x"></i><span>abs-chevron-right</span></div>
+    <div class="card" data-class="abs abs-chevron-left"><i class="abs abs-chevron-left abs-3x"></i><span>abs-chevron-left</span></div>
+    <div class="card" data-class="abs abs-chevron-up"><i class="abs abs-chevron-up abs-3x"></i><span>abs-chevron-up</span></div>
+    <div class="card" data-class="abs abs-chevron-down"><i class="abs abs-chevron-down abs-3x"></i><span>abs-chevron-down</span></div>
+    <div class="card" data-class="abs abs-angle-right"><i class="abs abs-angle-right abs-3x"></i><span>abs-angle-right</span></div>
+    <div class="card" data-class="abs abs-angle-left"><i class="abs abs-angle-left abs-3x"></i><span>abs-angle-left</span></div>
+    <div class="card" data-class="abs abs-angle-up"><i class="abs abs-angle-up abs-3x"></i><span>abs-angle-up</span></div>
+    <div class="card" data-class="abs abs-angle-down"><i class="abs abs-angle-down abs-3x"></i><span>abs-angle-down</span></div>
+  </div>
+
+  <h2>Brand Icons</h2>
+  <div class="grid">
+    <div class="card" data-class="abs abs-github"><i class="abs abs-github abs-3x"></i><span>abs-github</span></div>
+    <div class="card" data-class="abs abs-twitter"><i class="abs abs-twitter abs-3x"></i><span>abs-twitter</span></div>
+    <div class="card" data-class="abs abs-youtube"><i class="abs abs-youtube abs-3x"></i><span>abs-youtube</span></div>
+    <div class="card" data-class="abs abs-facebook"><i class="abs abs-facebook abs-3x"></i><span>abs-facebook</span></div>
+    <div class="card" data-class="abs abs-instagram"><i class="abs abs-instagram abs-3x"></i><span>abs-instagram</span></div>
+    <div class="card" data-class="abs abs-linkedin"><i class="abs abs-linkedin abs-3x"></i><span>abs-linkedin</span></div>
+    <div class="card" data-class="abs abs-discord"><i class="abs abs-discord abs-3x"></i><span>abs-discord</span></div>
+    <div class="card" data-class="abs abs-slack"><i class="abs abs-slack abs-3x"></i><span>abs-slack</span></div>
+    <div class="card" data-class="abs abs-npm"><i class="abs abs-npm abs-3x"></i><span>abs-npm</span></div>
+    <div class="card" data-class="abs abs-python"><i class="abs abs-python abs-3x"></i><span>abs-python</span></div>
+    <div class="card" data-class="abs abs-react"><i class="abs abs-react abs-3x"></i><span>abs-react</span></div>
+    <div class="card" data-class="abs abs-figma"><i class="abs abs-figma abs-3x"></i><span>abs-figma</span></div>
+    <div class="card" data-class="abs abs-docker"><i class="abs abs-docker abs-3x"></i><span>abs-docker</span></div>
+    <div class="card" data-class="abs abs-android"><i class="abs abs-android abs-3x"></i><span>abs-android</span></div>
+    <div class="card" data-class="abs abs-apple"><i class="abs abs-apple abs-3x"></i><span>abs-apple</span></div>
+    <div class="card" data-class="abs abs-windows"><i class="abs abs-windows abs-3x"></i><span>abs-windows</span></div>
+  </div>
+
+  <h2>Status Icons</h2>
+  <div class="grid">
+    <div class="card" data-class="abs abs-check"><i class="abs abs-check abs-3x"></i><span>abs-check</span></div>
+    <div class="card" data-class="abs abs-xmark"><i class="abs abs-xmark abs-3x"></i><span>abs-xmark</span></div>
+    <div class="card" data-class="abs abs-plus"><i class="abs abs-plus abs-3x"></i><span>abs-plus</span></div>
+    <div class="card" data-class="abs abs-minus"><i class="abs abs-minus abs-3x"></i><span>abs-minus</span></div>
+    <div class="card" data-class="abs abs-info"><i class="abs abs-info abs-3x"></i><span>abs-info</span></div>
+    <div class="card" data-class="abs abs-warning"><i class="abs abs-warning abs-3x"></i><span>abs-warning</span></div>
+    <div class="card" data-class="abs abs-question"><i class="abs abs-question abs-3x"></i><span>abs-question</span></div>
+    <div class="card" data-class="abs abs-spinner"><i class="abs abs-spinner abs-3x"></i><span>abs-spinner</span></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    function copyToClipboard(text) {
+      const toast = document.getElementById('toast');
+      const show = () => { toast.textContent = 'Copied: ' + text; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(show);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        show();
+      }
+    }
+    document.querySelectorAll('.card').forEach(el => {
+      el.addEventListener('click', () => copyToClipboard(el.dataset.class));
+    });
+  </script>
+</body>
+</html>
