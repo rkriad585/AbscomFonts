@@ -136,8 +136,8 @@ The framework checks for:
 - Mobile browsers
 
 ## Author & License 📄
-**Developer:** MD Riad Khan  
-**Contact:** [rkriad585@outlook.com](mailto:rkriad585@outlook.com)  
+**Developer:** RK Riad Khan  
+**Contact:** [rkriad585@gmail.com](mailto:rkriad585@gmail.com)  
 **License:** Free for personal and commercial use.
 
-> Made with ❤️ by RK Studio - Revolutionizing web icon solutions since 2025
+> Made with ❤️ by rkriad585 - Revolutionizing web icon solutions since 2025
