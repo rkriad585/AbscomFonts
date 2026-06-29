@@ -1,143 +1,162 @@
-# AbscomFonts Framework
+<div align="center">
 
-A comprehensive icon and styling framework with 1600+ icons, animations, color utilities, and validation system.
+# AbscomFonts
 
-## Features ✨
-- 1600+ icons (Brands, Solid, Regular)
-- 30+ CSS animations
-- Tailwind-inspired color palette (25 colors, 10 shades each)
-- Auto-generated CSS classes
-- Usage validation system
-- Size utilities (1x-16x)
-- Relative sizing classes
-- Color utilities
-- Transform utilities
-- Z-index controls
-- Icon Only support In `<i class={Icons_Class_Name}></i>` element
+**1600+ icons • 30+ animations • Color utilities • Zero build step**
 
-## Installation 📦
-0. See all available classes [click 📖](https://github.com/rkstudio585/AbscomFonts/blob/main/css-classes.txt) 
-1. Download `abscomfonts.js` from the project
-2. Add to your HTML:
+[![npm version](https://img.shields.io/npm/v/abscomfonts)](https://www.npmjs.com/package/abscomfonts)
+[![license](https://img.shields.io/npm/l/abscomfonts)](LICENSE)
+[![npm downloads](https://img.shields.io/npm/dm/abscomfonts)](https://www.npmjs.com/package/abscomfonts)
+
+A comprehensive icon font framework with 1600+ icons, 30+ CSS animations, a Tailwind-inspired color palette, and a built-in validation system. Works in any web project — no build tools required.
+
+</div>
+
+---
+
+## Overview
+
+AbscomFonts is a single-script icon framework that auto-injects everything into your page. Include one `<script>` tag and start using icons immediately.
+
+**Key features:**
+- **2492 icons** — Brands, Solid, and Regular styles
+- **30+ animations** — Spin, bounce, pulse, shake, and more
+- **275 color classes** — 25 colors × 11 shades (Tailwind palette)
+- **Size utilities** — Fixed (1x–16x) and relative sizing
+- **Transform & rotate** — 90°, 180°, 270°, flip, 3D rotation
+- **Validation system** — Detects missing classes, wrong elements
+- **No build step** — Works with plain HTML, no npm needed
+- **TypeScript support** — Full type definitions included
+
+---
+
+## Quick Start
+
+### Browser (CDN)
+
 ```html
-<script src="abscomfonts.js"></script>
+<script src="https://unpkg.com/abscomfonts/dist/abscomfonts.iife.js"></script>
+
+<i class="abs abs-heart abs-3x abs-red-500"></i>
+<i class="abs abs-spinner abs-spin abs-blue-600"></i>
 ```
 
-## Setup 🛠️
-The framework auto-injects required styles. Just include the JS file - no additional CSS needed!
+### npm
 
-## Basic Usage 🔧
+```bash
+npm install abscomfonts
+```
+
+```javascript
+// ESM / TypeScript
+import { abscomIcon, colorPalette, generateColorClasses } from 'abscomfonts';
+
+// CommonJS
+const abscomfonts = require('abscomfonts');
+```
+
+---
+
+## Project Structure
+
+```
+AbscomFonts/
+├── src/
+│   ├── icons.ts          # 2492 icon codepoint mappings
+│   ├── palette.ts        # 25-color palette (11 shades each)
+│   ├── css.ts            # CSS templates + generateColorClasses()
+│   ├── info.ts           # Console info utility
+│   ├── index.ts          # Main entry (auto-inits in browser)
+│   └── global.ts         # IIFE entry for browser <script>
+├── dist/
+│   ├── index.js          # ESM build
+│   ├── index.cjs         # CommonJS build
+│   ├── index.d.ts        # TypeScript declarations
+│   ├── abscomfonts.iife.js   # Browser IIFE (~91 KB)
+│   └── abscomfonts.d.ts      # IIFE type declarations
+├── fonts/
+│   ├── abs-brands-400.woff2
+│   ├── abs-solid-900.woff2
+│   ├── abs-regular-400.woff2
+│   └── abs-v4compatibility.woff2
+├── docs/
+│   ├── getting-started.md
+│   ├── icons.md
+│   ├── animations.md
+│   ├── colors.md
+│   ├── sizes.md
+│   ├── advanced.md
+│   ├── api.md
+│   ├── validation.md
+│   └── troubleshooting.md
+├── examples/
+│   ├── basic-icons.html       # Icon grid with click-to-copy
+│   ├── animated-icons.html    # Animation demos with click-to-copy
+│   ├── color-showcase.html    # Full color palette demo with click-to-copy
+│   ├── all-in-one.html        # Landing page showcase with click-to-copy
+│   ├── icon-picker.html       # Searchable icon browser with click-to-copy
+│   ├── form-elements.html     # Form inputs styled with icons
+│   ├── social-cards.html      # Brand cards with click-to-copy
+│   ├── require-example.cjs
+│   ├── import-example.mjs
+│   └── typescript-example.ts
+├── css-classes.txt        # Complete class reference
+├── abscomfonts.js         # Original single-file framework
+├── package.json
+├── tsconfig.json
+└── tsup.config.ts
+```
+
+---
+
+## Documentation
+
+| Guide | Description |
+|-------|-------------|
+| [Getting Started](docs/getting-started.md) | Installation, setup, first icon |
+| [Icons Reference](docs/icons.md) | All icon categories and usage |
+| [Animations](docs/animations.md) | 30+ animation classes |
+| [Colors](docs/colors.md) | Color palette and utilities |
+| [Sizes](docs/sizes.md) | Fixed and relative sizing |
+| [Advanced Features](docs/advanced.md) | Transforms, z-index, hover effects |
+| [API Reference](docs/api.md) | Programmatic usage (ESM/CJS/TS) |
+| [Validation System](docs/validation.md) | Built-in usage validation |
+| [Troubleshooting](docs/troubleshooting.md) | Common issues and fixes |
+
+---
+
+## Basic Usage
+
 ```html
 <!-- Basic Icon -->
 <i class="abs abs-heart"></i>
 
-<!-- Icon with size and color -->
+<!-- With size and color -->
 <i class="abs abs-arrow-right abs-3x abs-blue-600"></i>
 
-<!-- Animated Icon -->
+<!-- Animated -->
 <i class="abs abs-spinner abs-spin abs-purple-500"></i>
+
+<!-- Multiple modifiers -->
+<i class="abs abs-cog abs-spin abs-4x abs-red-500 abs-hover-scale"></i>
 ```
 
-## Icon Classes 🎨
-**Format:** `abs abs-{icon-name}`
+---
 
-Examples:
-- `abs abs-twitter`
-- `abs abs-camera`
-- `abs abs-cloud-download`
+## Browser Support
 
-## Color Utilities 🌈
-**Format:** `abs-{color}-{shade}`  
-Available colors: slate, gray, zinc, neutral, stone, red, orange, amber, yellow, lime, green, emerald, teal, cyan, sky, blue, indigo, violet, purple, fuchsia, pink, rose
+Chrome • Firefox • Safari • Edge • IE11+ (with polyfills) • Mobile browsers
 
-Shades: 50-900 (in 100 increments) + 950
+---
 
-Example:
-```html
-<i class="abs abs-star abs-emerald-400"></i>
-<div class="bg-slate-800">...</div>
-```
+## Author & License
 
-## Animations 🌀
-30+ animations available:
-
-```html
-<i class="abs abs-sync abs-spin"></i>
-<i class="abs abs-bell abs-bounce"></i>
-<i class="abs abs-alert abs-pulse"></i>
-```
-
-**Full Animation List:**
-- spin, bounce, wobble, pulse
-- rgb-change, shake, skew, flip
-- fade, glow-gold, zoom, slide
-- rotate3d, blink, swing, float
-- jelly, vibrate, rainbow
-- Multiple rotation variations
-
-## Size Control 📏
-**Fixed Sizes:**
-```html
-<i class="abs abs-1x">...</i> <!-- 1em -->
-<i class="abs abs-5x">...</i> <!-- 5em -->
-<!-- Up to abs-16x -->
-```
-
-**Relative Sizes:**
-```html
-<i class="abs abs-relative-sm"></i>
-<!-- Options: 2xs, 3xs, xs, sm, lg, xl, 2xl, 3xl -->
-```
-
-## Advanced Features ⚡
-
-**Transforms:**
-```html
-<i class="abs abs-arrow abs-transform-90"></i>
-<i class="abs abs-refresh abs-transform-vertical"></i>
-```
-
-**Z-Index Control:**
-```html
-<i class="abs abs-warning abs-z-fast"></i>
-<!-- Options: z-auto, z-1 to z-5, z-fast, z-last -->
-```
-
-**Hover Effects:**
-```html
-<i class="abs abs-download abs-hover-scale"></i>
-```
-
-## Validation System ✔️
-The framework checks for:
-- Icon classes on non-`<i>` elements
-- Missing base `abs` class
-- Orphan animation/color classes
-- Warnings in browser console
-
-## Customization 🎛️
-**Custom Sizes:**
-```css
-.custom-size {
-  font-size: 4.5em !important;
-}
-```
-
-**Custom Colors:**
-```css
-.abs-custom-color {
-  color: #customhex !important;
-}
-```
-
-## Browser Support 🌐
-- Modern browsers (Chrome, Firefox, Safari, Edge)
-- IE11+ (with polyfills)
-- Mobile browsers
-
-## Author & License 📄
 **Developer:** RK Riad Khan  
 **Contact:** [rkriad585@gmail.com](mailto:rkriad585@gmail.com)  
-**License:** Free for personal and commercial use.
+**License:** MIT — Free for personal and commercial use.
 
-> Made with ❤️ by rkriad585 - Revolutionizing web icon solutions since 2025
+---
+
+<div align="center">
+Made with ❤️ by rkriad585 — Revolutionizing web icon solutions since 2025
+</div>
