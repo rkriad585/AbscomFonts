@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stack & Layers - AbscomFonts</title>
+  <script src="../dist/abscomfonts.iife.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; }
+    h1 { text-align: center; margin-bottom: .5rem; font-size: 2rem; color: #f8fafc; }
+    .subtitle { text-align: center; color: #64748b; margin-bottom: 2rem; }
+    h2 { margin: 2rem 0 1rem; color: #94a3b8; border-bottom: 1px solid #1e293b; padding-bottom: .5rem; }
+    .demo-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center; }
+    .card { text-align: center; cursor: pointer; transition: background .2s, transform .1s; padding: 1.5rem; background: #1e293b; border-radius: 8px; min-width: 130px; }
+    .card:hover { background: #334155; transform: scale(1.05); }
+    .card:active { transform: scale(.95); }
+    .card .label { display: block; font-size: .7rem; color: #64748b; margin-top: .75rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: #22c55e; color: #fff; padding: .75rem 1.5rem; border-radius: 8px; font-size: .9rem; opacity: 0; transition: all .3s; z-index: 9999; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <h1>Stack & Layers</h1>
+  <p class="subtitle">Click any card to copy its HTML</p>
+
+  <h2>Icon Stacking</h2>
+  <div class="demo-row">
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-stack"><i class="abs abs-circle abs-stack-2x abs-gray-300"></i><i class="abs abs-flag abs-stack-1x abs-red-500"></i></span>'>
+      <span class="abs-stack"><i class="abs abs-circle abs-stack-2x abs-gray-300"></i><i class="abs abs-flag abs-stack-1x abs-red-500"></i></span>
+      <span class="label">Flag on circle</span>
+    </div>
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-stack"><i class="abs abs-square abs-stack-2x abs-gray-300"></i><i class="abs abs-check abs-stack-1x abs-green-500"></i></span>'>
+      <span class="abs-stack"><i class="abs abs-square abs-stack-2x abs-gray-300"></i><i class="abs abs-check abs-stack-1x abs-green-500"></i></span>
+      <span class="label">Check on square</span>
+    </div>
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-stack"><i class="abs abs-circle abs-stack-2x abs-blue-100"></i><i class="abs abs-heart abs-stack-1x abs-red-500"></i></span>'>
+      <span class="abs-stack"><i class="abs abs-circle abs-stack-2x abs-blue-100"></i><i class="abs abs-heart abs-stack-1x abs-red-500"></i></span>
+      <span class="label">Heart on circle</span>
+    </div>
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-stack"><i class="abs abs-circle abs-stack-2x abs-amber-100"></i><i class="abs abs-star abs-stack-1x abs-yellow-500"></i></span>'>
+      <span class="abs-stack"><i class="abs abs-circle abs-stack-2x abs-amber-100"></i><i class="abs abs-star abs-stack-1x abs-yellow-500"></i></span>
+      <span class="label">Star on circle</span>
+    </div>
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-stack"><i class="abs abs-circle abs-stack-2x abs-red-100"></i><i class="abs abs-xmark abs-stack-1x abs-red-500"></i></span>'>
+      <span class="abs-stack"><i class="abs abs-circle abs-stack-2x abs-red-100"></i><i class="abs abs-xmark abs-stack-1x abs-red-500"></i></span>
+      <span class="label">X mark on circle</span>
+    </div>
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-stack"><i class="abs abs-circle abs-stack-2x abs-green-100"></i><i class="abs abs-check abs-stack-1x abs-green-500"></i></span>'>
+      <span class="abs-stack"><i class="abs abs-circle abs-stack-2x abs-green-100"></i><i class="abs abs-check abs-stack-1x abs-green-500"></i></span>
+      <span class="label">Check on circle</span>
+    </div>
+  </div>
+
+  <h2>Icon Layers</h2>
+  <div class="demo-row">
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-layers"><i class="abs abs-circle abs-2x abs-gray-300"></i><i class="abs abs-flag abs-2x"></i></span>'>
+      <span class="abs-layers"><i class="abs abs-circle abs-2x abs-gray-300"></i><i class="abs abs-flag abs-2x"></i></span>
+      <span class="label">Basic layers</span>
+    </div>
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-layers"><i class="abs abs-circle abs-2x abs-gray-300"></i><i class="abs abs-heart abs-2x abs-red-500"></i></span>'>
+      <span class="abs-layers"><i class="abs abs-circle abs-2x abs-gray-300"></i><i class="abs abs-heart abs-2x abs-red-500"></i></span>
+      <span class="label">Heart layers</span>
+    </div>
+  </div>
+
+  <h2>Layers with Text</h2>
+  <div class="demo-row">
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-layers"><i class="abs abs-circle abs-2x abs-gray-300"></i><span class="abs-layers-text" style="font-weight:600;">ABS</span></span>'>
+      <span class="abs-layers"><i class="abs abs-circle abs-2x abs-gray-300"></i><span class="abs-layers-text" style="font-weight:600;">ABS</span></span>
+      <span class="label">Text overlay</span>
+    </div>
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-layers"><i class="abs abs-square abs-2x abs-blue-100"></i><span class="abs-layers-text" style="font-weight:600;color:#2563eb;">GO</span></span>'>
+      <span class="abs-layers"><i class="abs abs-square abs-2x abs-blue-100"></i><span class="abs-layers-text" style="font-weight:600;color:#2563eb;">GO</span></span>
+      <span class="label">Square + text</span>
+    </div>
+  </div>
+
+  <h2>Layers with Counter / Badge</h2>
+  <div class="demo-row">
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-layers"><i class="abs abs-circle abs-2x abs-gray-300"></i><span class="abs-layers-counter">42</span></span>'>
+      <span class="abs-layers"><i class="abs abs-circle abs-2x abs-gray-300"></i><span class="abs-layers-counter">42</span></span>
+      <span class="label">Counter center</span>
+    </div>
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-layers"><i class="abs abs-envelope abs-2x"></i><span class="abs-layers-counter abs-layers-top-right">3</span></span>'>
+      <span class="abs-layers"><i class="abs abs-envelope abs-2x"></i><span class="abs-layers-counter abs-layers-top-right">3</span></span>
+      <span class="label">Badge top-right</span>
+    </div>
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-layers"><i class="abs abs-bell abs-2x"></i><span class="abs-layers-counter abs-layers-top-right">99+</span></span>'>
+      <span class="abs-layers"><i class="abs abs-bell abs-2x"></i><span class="abs-layers-counter abs-layers-top-right">99+</span></span>
+      <span class="label">Notification badge</span>
+    </div>
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-layers"><i class="abs abs-cart-shopping abs-2x"></i><span class="abs-layers-counter abs-layers-top-right">5</span></span>'>
+      <span class="abs-layers"><i class="abs abs-cart-shopping abs-2x"></i><span class="abs-layers-counter abs-layers-top-right">5</span></span>
+      <span class="label">Cart badge</span>
+    </div>
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-layers"><i class="abs abs-heart abs-2x abs-pink-500"></i><span class="abs-layers-counter abs-layers-top-right">1</span></span>'>
+      <span class="abs-layers"><i class="abs abs-heart abs-2x abs-pink-500"></i><span class="abs-layers-counter abs-layers-top-right">1</span></span>
+      <span class="label">Heart badge</span>
+    </div>
+  </div>
+
+  <h2>Combined Examples</h2>
+  <div class="grid">
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-stack"><i class="abs abs-circle abs-stack-2x abs-gray-300"></i><i class="abs abs-flag abs-stack-1x abs-red-500"></i></span>'>
+      <span class="abs-stack"><i class="abs abs-circle abs-stack-2x abs-gray-300"></i><i class="abs abs-flag abs-stack-1x abs-red-500"></i></span>
+      <span class="label">Stack: flag + circle</span>
+    </div>
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-layers"><i class="abs abs-circle abs-2x abs-gray-300"></i><span class="abs-layers-counter abs-layers-top-right" style="background:#ef4444;min-width:auto;padding:0 .3em;">!</span></span>'>
+      <span class="abs-layers"><i class="abs abs-circle abs-2x abs-gray-300"></i><span class="abs-layers-counter abs-layers-top-right" style="background:#ef4444;min-width:auto;padding:0 .3em;">!</span></span>
+      <span class="label">Circle with alert</span>
+    </div>
+    <div class="card" onclick="copy(this)" data-class='<span class="abs-layers"><i class="abs abs-square abs-2x abs-blue-100"></i><span class="abs-layers-text" style="color:#2563eb;font-weight:700;">OK</span></span>'>
+      <span class="abs-layers"><i class="abs abs-square abs-2x abs-blue-100"></i><span class="abs-layers-text" style="color:#2563eb;font-weight:700;">OK</span></span>
+      <span class="label">Square with text</span>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    function copy(el) {
+      const text = el.dataset.class;
+      if (!text) return;
+      const toast = document.getElementById('toast');
+      navigator.clipboard.writeText(text).then(() => {
+        toast.textContent = 'Copied!'; toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1500);
+      });
+    }
+  </script>
+</body>
+</html>

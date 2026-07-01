@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gradient & Color Utilities - AbscomFonts</title>
+  <script src="../dist/abscomfonts.iife.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; }
+    h1 { text-align: center; margin-bottom: .5rem; font-size: 2rem; color: #f8fafc; }
+    .subtitle { text-align: center; color: #64748b; margin-bottom: 2rem; }
+    h2 { margin: 2rem 0 1rem; color: #94a3b8; border-bottom: 1px solid #1e293b; padding-bottom: .5rem; }
+    .demo-row { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; justify-content: center; }
+    .demo-row > div { text-align: center; cursor: pointer; transition: transform .1s; padding: 1rem; background: #1e293b; border-radius: 8px; }
+    .demo-row > div:active { transform: scale(.95); }
+    .demo-row > div span { display: block; font-size: .7rem; color: #64748b; margin-top: .5rem; }
+    .box { padding: 2rem; border-radius: 8px; text-align: center; }
+    ul { list-style: none; max-width: 400px; margin: 0 auto; }
+    ul li { padding: .75rem 1rem; border-bottom: 1px solid #1e293b; display: flex; align-items: center; gap: .75rem; cursor: pointer; border-radius: 6px; transition: background .2s; }
+    ul li:hover { background: #1e293b; }
+    ul li span { color: #94a3b8; }
+    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: #22c55e; color: #fff; padding: .75rem 1.5rem; border-radius: 8px; font-size: .9rem; opacity: 0; transition: all .3s; z-index: 9999; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <h1>Gradient & Color Utilities</h1>
+  <p class="subtitle">Click any element to copy its markup</p>
+
+  <h2>Gradient Text</h2>
+  <div class="demo-row">
+    <div data-class='<i class="abs abs-flag abs-gradient abs-gradient-from-blue-500 abs-gradient-to-purple-500 abs-5x"></i>'>
+      <i class="abs abs-flag abs-gradient abs-gradient-from-blue-500 abs-gradient-to-purple-500 abs-5x"></i>
+      <span>blue-500 → purple-500</span>
+    </div>
+    <div data-class='<i class="abs abs-heart abs-gradient abs-gradient-from-pink-400 abs-gradient-to-rose-600 abs-5x"></i>'>
+      <i class="abs abs-heart abs-gradient abs-gradient-from-pink-400 abs-gradient-to-rose-600 abs-5x"></i>
+      <span>pink-400 → rose-600</span>
+    </div>
+    <div data-class='<i class="abs abs-star abs-gradient abs-gradient-from-yellow-300 abs-gradient-to-orange-600 abs-5x"></i>'>
+      <i class="abs abs-star abs-gradient abs-gradient-from-yellow-300 abs-gradient-to-orange-600 abs-5x"></i>
+      <span>yellow-300 → orange-600</span>
+    </div>
+    <div data-class='<i class="abs abs-crown abs-gradient abs-gradient-from-amber-400 abs-gradient-to-yellow-200 abs-5x"></i>'>
+      <i class="abs abs-crown abs-gradient abs-gradient-from-amber-400 abs-gradient-to-yellow-200 abs-5x"></i>
+      <span>amber-400 → yellow-200</span>
+    </div>
+    <div data-class='<i class="abs abs-fire abs-gradient abs-gradient-from-red-500 abs-gradient-to-orange-400 abs-5x"></i>'>
+      <i class="abs abs-fire abs-gradient abs-gradient-from-red-500 abs-gradient-to-orange-400 abs-5x"></i>
+      <span>red-500 → orange-400</span>
+    </div>
+  </div>
+
+  <h2>Background Gradients</h2>
+  <div class="demo-row">
+    <div class="box bg-gradient bg-gradient-from-cyan-500 bg-gradient-to-blue-700" data-class='<div class="bg-gradient bg-gradient-from-cyan-500 bg-gradient-to-blue-700"><i class="abs abs-cloud abs-white abs-3x"></i></div>'>
+      <i class="abs abs-cloud abs-white abs-3x"></i>
+      <span style="display:block;color:rgba(255,255,255,.7);margin-top:.5rem;font-size:.8rem;">cyan-500 → blue-700</span>
+    </div>
+    <div class="box bg-gradient bg-gradient-from-purple-600 bg-gradient-to-pink-500" data-class='<div class="bg-gradient bg-gradient-from-purple-600 bg-gradient-to-pink-500"><i class="abs abs-heart abs-white abs-3x"></i></div>'>
+      <i class="abs abs-heart abs-white abs-3x"></i>
+      <span style="display:block;color:rgba(255,255,255,.7);margin-top:.5rem;font-size:.8rem;">purple-600 → pink-500</span>
+    </div>
+    <div class="box bg-gradient bg-gradient-from-emerald-500 bg-gradient-to-teal-700" data-class='<div class="bg-gradient bg-gradient-from-emerald-500 bg-gradient-to-teal-700"><i class="abs abs-leaf abs-white abs-3x"></i></div>'>
+      <i class="abs abs-leaf abs-white abs-3x"></i>
+      <span style="display:block;color:rgba(255,255,255,.7);margin-top:.5rem;font-size:.8rem;">emerald-500 → teal-700</span>
+    </div>
+  </div>
+
+  <h2>Opacity Classes</h2>
+  <div class="demo-row">
+    <div data-class='<i class="abs abs-star abs-3x abs-yellow-400 abs-opacity-25"></i>'>
+      <i class="abs abs-star abs-3x abs-yellow-400 abs-opacity-25"></i>
+      <span>abs-opacity-25</span>
+    </div>
+    <div data-class='<i class="abs abs-star abs-3x abs-yellow-400 abs-opacity-50"></i>'>
+      <i class="abs abs-star abs-3x abs-yellow-400 abs-opacity-50"></i>
+      <span>abs-opacity-50</span>
+    </div>
+    <div data-class='<i class="abs abs-star abs-3x abs-yellow-400 abs-opacity-75"></i>'>
+      <i class="abs abs-star abs-3x abs-yellow-400 abs-opacity-75"></i>
+      <span>abs-opacity-75</span>
+    </div>
+    <div data-class='<i class="abs abs-star abs-3x abs-yellow-400 abs-opacity-100"></i>'>
+      <i class="abs abs-star abs-3x abs-yellow-400 abs-opacity-100"></i>
+      <span>abs-opacity-100</span>
+    </div>
+  </div>
+
+  <h2>Inverse (White on Dark)</h2>
+  <div class="demo-row">
+    <div style="background:#1e293b;padding:1.5rem;border-radius:8px;" data-class='<i class="abs abs-star abs-inverse abs-3x"></i>'>
+      <i class="abs abs-star abs-inverse abs-3x"></i>
+      <span style="color:#94a3b8;font-size:.7rem;margin-top:.5rem;">abs-inverse</span>
+    </div>
+    <div style="background:#334155;padding:1.5rem;border-radius:8px;" data-class='<i class="abs abs-heart abs-inverse abs-3x"></i>'>
+      <i class="abs abs-heart abs-inverse abs-3x"></i>
+      <span style="color:#94a3b8;font-size:.7rem;margin-top:.5rem;">abs-inverse</span>
+    </div>
+    <div style="background:#1e3a5f;padding:1.5rem;border-radius:8px;" data-class='<i class="abs abs-flag abs-inverse abs-3x"></i>'>
+      <i class="abs abs-flag abs-inverse abs-3x"></i>
+      <span style="color:#94a3b8;font-size:.7rem;margin-top:.5rem;">abs-inverse</span>
+    </div>
+  </div>
+
+  <h2>Fixed Width (abs-fw)</h2>
+  <ul>
+    <li onclick="copy(this)" data-class='<li><i class="abs abs-check abs-fw abs-green-500"></i> Completed</li>'><i class="abs abs-check abs-fw abs-green-500"></i><span>Completed</span></li>
+    <li onclick="copy(this)" data-class='<li><i class="abs abs-cog abs-fw"></i> Settings</li>'><i class="abs abs-cog abs-fw"></i><span>Settings</span></li>
+    <li onclick="copy(this)" data-class='<li><i class="abs abs-user abs-fw"></i> Profile</li>'><i class="abs abs-user abs-fw"></i><span>Profile</span></li>
+    <li onclick="copy(this)" data-class='<li><i class="abs abs-envelope abs-fw"></i> Messages</li>'><i class="abs abs-envelope abs-fw"></i><span>Messages</span></li>
+    <li onclick="copy(this)" data-class='<li><i class="abs abs-bell abs-fw"></i> Notifications</li>'><i class="abs abs-bell abs-fw"></i><span>Notifications</span></li>
+  </ul>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    function copy(el) {
+      const text = el.dataset.class;
+      if (!text) return;
+      const toast = document.getElementById('toast');
+      navigator.clipboard.writeText(text).then(() => {
+        toast.textContent = 'Copied!'; toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1500);
+      });
+    }
+    document.querySelectorAll('[data-class]').forEach(el => {
+      el.addEventListener('click', () => copy(el));
+    });
+  </script>
+</body>
+</html>

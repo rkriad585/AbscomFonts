@@ -8,6 +8,9 @@ import {
   relativeSizeClassesCSS,
   utilityClassesCSS,
   generateColorClasses as sharedColorClasses,
+  generateGradientClasses,
+  generateTransformClasses,
+  generateComponentClasses,
   minifyCSS,
 } from './css-templates.js'
 
@@ -50,10 +53,13 @@ export const mainClasses = [
   sizeClassesCSS(),
   relativeSizeClassesCSS(),
   utilityClassesCSS(),
+  generateGradientClasses(),
+  generateTransformClasses(),
+  generateComponentClasses(),
 ].join('\n')
 
 export function generateColorClasses(): string {
   return sharedColorClasses()
 }
 
-export { colorPalette, minifyCSS }
+export { colorPalette, minifyCSS, generateGradientClasses, generateTransformClasses }

@@ -37,53 +37,104 @@ export const baseIconCSS = `.abs {
     'AbsV4Compatibility';
 }`
 
+function animationRule(name: string, defaultDuration: string, defaultTiming: string): string {
+  return [
+    `animation-name: ${name};`,
+    `animation-duration: var(--abs-animation-duration, ${defaultDuration});`,
+    `animation-timing-function: var(--abs-animation-timing, ${defaultTiming});`,
+    `animation-iteration-count: var(--abs-animation-iteration-count, infinite);`,
+    `animation-delay: var(--abs-animation-delay, 0s);`,
+    `animation-direction: var(--abs-animation-direction, normal);`,
+    `animation-fill-mode: var(--abs-animation-fill-mode, none);`,
+  ].join(' ')
+}
+
 export const animationClasses: Record<string, string> = {
-  'abs-spin': 'animation: abs-spin 2s infinite linear;',
-  'abs-spin-reverse': 'animation: abs-spin-reverse 2s infinite linear;',
-  'abs-pulse': 'animation: abs-pulse 1.5s infinite ease-in-out;',
-  'abs-bounce': 'animation: abs-bounce 1s infinite ease-in-out;',
-  'abs-shake': 'animation: abs-shake 0.5s infinite ease-in-out;',
-  'abs-wobble': 'animation: abs-wobble 1s infinite ease-in-out;',
-  'abs-swing': 'animation: abs-swing 1s infinite ease-in-out;',
-  'abs-float': 'animation: abs-float 2s infinite ease-in-out;',
-  'abs-jelly': 'animation: abs-jelly 1s infinite ease-in-out;',
-  'abs-slide': 'animation: abs-slide 2s infinite ease-in-out;',
-  'abs-slide-up-down': 'animation: abs-slide-up-down 2s infinite ease-in-out;',
-  'abs-fade': 'animation: abs-fade 2s infinite ease-in-out;',
-  'abs-blink': 'animation: abs-blink 1s infinite ease-in-out;',
-  'abs-flip': 'animation: abs-flip 2s infinite ease-in-out;',
-  'abs-flip-horizontal': 'animation: abs-flip-horizontal 2s infinite ease-in-out;',
-  'abs-flip-vertical': 'animation: abs-flip-vertical 2s infinite ease-in-out;',
-  'abs-zoom': 'animation: abs-zoom 2s infinite ease-in-out;',
-  'abs-skew': 'animation: abs-skew 2s infinite ease-in-out;',
-  'abs-vibrate': 'animation: abs-vibrate 0.1s infinite ease-in-out;',
-  'abs-rotate3d': 'animation: abs-rotate3d 3s infinite linear;',
-  'abs-rgb-change': 'animation: abs-rgb-change 3s infinite linear;',
-  'abs-rainbow': 'animation: abs-rainbow 5s infinite linear;',
-  'abs-glow-gold': 'animation: abs-glow-gold 2s infinite ease-in-out;',
-  'abs-rotate-45': 'animation: abs-rotate-45 2s infinite ease-in-out;',
-  'abs-rotate-90': 'animation: abs-rotate-90 2s infinite ease-in-out;',
-  'abs-rotate-180': 'animation: abs-rotate-180 2s infinite ease-in-out;',
-  'abs-rotate-270': 'animation: abs-rotate-270 2s infinite ease-in-out;',
-  'abs-rotate-360': 'animation: abs-rotate-360 2s infinite ease-in-out;',
-  'abs-rotate-x': 'animation: abs-rotate-x 2s infinite ease-in-out;',
-  'abs-rotate-y': 'animation: abs-rotate-y 2s infinite ease-in-out;',
-  'abs-rotate-z': 'animation: abs-rotate-z 2s infinite ease-in-out;',
-  'abs-rotate-xyz': 'animation: abs-rotate-xyz 2s infinite ease-in-out;',
-  'abs-rotate-x-90': 'animation: abs-rotate-x-90 2s infinite ease-in-out;',
-  'abs-rotate-y-90': 'animation: abs-rotate-y-90 2s infinite ease-in-out;',
-  'abs-rotate-z-90': 'animation: abs-rotate-z-90 2s infinite ease-in-out;',
-  'abs-rotate-x-180': 'animation: abs-rotate-x-180 2s infinite ease-in-out;',
-  'abs-rotate-y-180': 'animation: abs-rotate-y-180 2s infinite ease-in-out;',
-  'abs-rotate-z-180': 'animation: abs-rotate-z-180 2s infinite ease-in-out;',
-  'abs-rotate-x-270': 'animation: abs-rotate-x-270 2s infinite ease-in-out;',
-  'abs-rotate-y-270': 'animation: abs-rotate-y-270 2s infinite ease-in-out;',
-  'abs-rotate-z-270': 'animation: abs-rotate-z-270 2s infinite ease-in-out;',
-  'abs-rotate-x-360': 'animation: abs-rotate-x-360 2s infinite ease-in-out;',
-  'abs-rotate-y-360': 'animation: abs-rotate-y-360 2s infinite ease-in-out;',
-  'abs-rotate-z-360': 'animation: abs-rotate-z-360 2s infinite ease-in-out;',
-  'abs-rotate-xyz-360': 'animation: abs-rotate-xyz-360 2s infinite ease-in-out;',
-  'abs-rotate-xyz-5040': 'animation: abs-rotate-xyz-5040 2s infinite ease-in-out;',
+  'abs-spin': animationRule('abs-spin', '2s', 'linear'),
+  'abs-spin-reverse': animationRule('abs-spin-reverse', '2s', 'linear'),
+  'abs-pulse': animationRule('abs-pulse', '1.5s', 'ease-in-out'),
+  'abs-bounce': animationRule('abs-bounce', '1s', 'ease-in-out'),
+  'abs-shake': animationRule('abs-shake', '0.5s', 'ease-in-out'),
+  'abs-wobble': animationRule('abs-wobble', '1s', 'ease-in-out'),
+  'abs-swing': [
+    'transform-origin: top center;',
+    `animation-name: abs-swing;`,
+    `animation-duration: var(--abs-animation-duration, 1s);`,
+    `animation-timing-function: var(--abs-animation-timing, ease-in-out);`,
+    `animation-iteration-count: var(--abs-animation-iteration-count, infinite);`,
+    `animation-delay: var(--abs-animation-delay, 0s);`,
+    `animation-direction: var(--abs-animation-direction, normal);`,
+    `animation-fill-mode: var(--abs-animation-fill-mode, none);`,
+  ].join(' '),
+  'abs-float': animationRule('abs-float', '2s', 'ease-in-out'),
+  'abs-jelly': animationRule('abs-jelly', '1s', 'ease-in-out'),
+  'abs-slide': animationRule('abs-slide', '2s', 'ease-in-out'),
+  'abs-slide-up-down': animationRule('abs-slide-up-down', '2s', 'ease-in-out'),
+  'abs-fade': animationRule('abs-fade', '2s', 'ease-in-out'),
+  'abs-blink': animationRule('abs-blink', '1s', 'ease-in-out'),
+  'abs-flip': animationRule('abs-flip', '2s', 'ease-in-out'),
+  'abs-flip-horizontal': animationRule('abs-flip-horizontal', '2s', 'ease-in-out'),
+  'abs-flip-vertical': animationRule('abs-flip-vertical', '2s', 'ease-in-out'),
+  'abs-zoom': animationRule('abs-zoom', '2s', 'ease-in-out'),
+  'abs-skew': animationRule('abs-skew', '2s', 'ease-in-out'),
+  'abs-vibrate': animationRule('abs-vibrate', '0.1s', 'ease-in-out'),
+  'abs-rotate3d': animationRule('abs-rotate3d', '3s', 'linear'),
+  'abs-rgb-change': animationRule('abs-rgb-change', '3s', 'linear'),
+  'abs-rainbow': animationRule('abs-rainbow', '5s', 'linear'),
+  'abs-glow-gold': animationRule('abs-glow-gold', '2s', 'ease-in-out'),
+
+  'abs-rotate-45': animationRule('abs-rotate-45', '2s', 'ease-in-out'),
+  'abs-rotate-90': animationRule('abs-rotate-90', '2s', 'ease-in-out'),
+  'abs-rotate-180': animationRule('abs-rotate-180', '2s', 'ease-in-out'),
+  'abs-rotate-270': animationRule('abs-rotate-270', '2s', 'ease-in-out'),
+  'abs-rotate-360': animationRule('abs-rotate-360', '2s', 'ease-in-out'),
+  'abs-rotate-x': animationRule('abs-rotate-x', '2s', 'ease-in-out'),
+  'abs-rotate-y': animationRule('abs-rotate-y', '2s', 'ease-in-out'),
+  'abs-rotate-z': animationRule('abs-rotate-z', '2s', 'ease-in-out'),
+  'abs-rotate-xyz': animationRule('abs-rotate-xyz', '2s', 'ease-in-out'),
+  'abs-rotate-x-90': animationRule('abs-rotate-x-90', '2s', 'ease-in-out'),
+  'abs-rotate-y-90': animationRule('abs-rotate-y-90', '2s', 'ease-in-out'),
+  'abs-rotate-z-90': animationRule('abs-rotate-z-90', '2s', 'ease-in-out'),
+  'abs-rotate-x-180': animationRule('abs-rotate-x-180', '2s', 'ease-in-out'),
+  'abs-rotate-y-180': animationRule('abs-rotate-y-180', '2s', 'ease-in-out'),
+  'abs-rotate-z-180': animationRule('abs-rotate-z-180', '2s', 'ease-in-out'),
+  'abs-rotate-x-270': animationRule('abs-rotate-x-270', '2s', 'ease-in-out'),
+  'abs-rotate-y-270': animationRule('abs-rotate-y-270', '2s', 'ease-in-out'),
+  'abs-rotate-z-270': animationRule('abs-rotate-z-270', '2s', 'ease-in-out'),
+  'abs-rotate-x-360': animationRule('abs-rotate-x-360', '2s', 'ease-in-out'),
+  'abs-rotate-y-360': animationRule('abs-rotate-y-360', '2s', 'ease-in-out'),
+  'abs-rotate-z-360': animationRule('abs-rotate-z-360', '2s', 'ease-in-out'),
+  'abs-rotate-xyz-360': animationRule('abs-rotate-xyz-360', '2s', 'ease-in-out'),
+  'abs-rotate-xyz-5040': animationRule('abs-rotate-xyz-5040', '2s', 'ease-in-out'),
+
+  'abs-beat': animationRule('abs-beat', '0.8s', 'ease-in-out'),
+  'abs-beat-fade': animationRule('abs-beat-fade', '1.2s', 'ease-in-out'),
+  'abs-flash': animationRule('abs-flash', '0.8s', 'ease-in-out'),
+  'abs-tada': animationRule('abs-tada', '1s', 'ease-in-out'),
+  'abs-jello': animationRule('abs-jello', '1s', 'ease-in-out'),
+  'abs-rubber-band': animationRule('abs-rubber-band', '1s', 'ease-in-out'),
+  'abs-buzz': animationRule('abs-buzz', '0.15s', 'linear'),
+  'abs-wag': [
+    'transform-origin: bottom center;',
+    `animation-name: abs-wag;`,
+    `animation-duration: var(--abs-animation-duration, 0.5s);`,
+    `animation-timing-function: var(--abs-animation-timing, ease-in-out);`,
+    `animation-iteration-count: var(--abs-animation-iteration-count, infinite);`,
+    `animation-delay: var(--abs-animation-delay, 0s);`,
+    `animation-direction: var(--abs-animation-direction, normal);`,
+    `animation-fill-mode: var(--abs-animation-fill-mode, none);`,
+  ].join(' '),
+  'abs-glow': animationRule('abs-glow', '2s', 'ease-in-out'),
+  'abs-breathe': animationRule('abs-breathe', '3s', 'ease-in-out'),
+  'abs-spin-snap': [
+    `animation-name: abs-spin-snap;`,
+    `animation-duration: var(--abs-animation-duration, 1.2s);`,
+    `animation-timing-function: steps(4);`,
+    `animation-iteration-count: var(--abs-animation-iteration-count, infinite);`,
+    `animation-delay: var(--abs-animation-delay, 0s);`,
+    `animation-direction: var(--abs-animation-direction, normal);`,
+    `animation-fill-mode: var(--abs-animation-fill-mode, none);`,
+  ].join(' '),
 }
 
 export const animationKeyframes: Record<string, string> = {
@@ -92,17 +143,18 @@ export const animationKeyframes: Record<string, string> = {
   'abs-pulse': '0%,100% { transform: scale(1); } 50% { transform: scale(1.2); }',
   'abs-bounce': '0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); }',
   'abs-shake':
-    '0%,100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); }',
+    '0%,100% { transform: translateX(0) rotate(0deg); } 15% { transform: translateX(-5px) rotate(-3deg); } 30% { transform: translateX(5px) rotate(3deg); } 45% { transform: translateX(-4px) rotate(-2deg); } 60% { transform: translateX(4px) rotate(2deg); } 75% { transform: translateX(-2px) rotate(-1deg); }',
   'abs-wobble':
     '0%,100% { transform: rotate(0deg); } 25% { transform: rotate(-10deg); } 75% { transform: rotate(10deg); }',
   'abs-swing':
-    '0%,100% { transform: rotate(0deg); } 25% { transform: rotate(15deg); } 75% { transform: rotate(-15deg); }',
+    '0%,100% { transform: rotate(0deg); } 25% { transform: rotate(15deg); } 50% { transform: rotate(-15deg); } 75% { transform: rotate(15deg); }',
   'abs-float': '0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); }',
   'abs-jelly':
     '0%,100% { transform: scale(1); } 25% { transform: scale(1.2,0.8); } 50% { transform: scale(0.8,1.2); } 75% { transform: scale(1.1,0.9); }',
   'abs-slide': '0%,100% { transform: translateX(0); } 50% { transform: translateX(20px); }',
   'abs-slide-up-down': '0%,100% { transform: translateY(0); } 50% { transform: translateY(20px); }',
-  'abs-fade': '0%,100% { opacity: 1; } 50% { opacity: 0.5; }',
+  'abs-fade':
+    '0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.95); }',
   'abs-blink': '0%,100% { opacity: 1; } 50% { opacity: 0; }',
   'abs-flip': '0%,100% { transform: rotateY(0deg); } 50% { transform: rotateY(180deg); }',
   'abs-flip-horizontal': '0%,100% { transform: scaleX(1); } 50% { transform: scaleX(-1); }',
@@ -144,12 +196,41 @@ export const animationKeyframes: Record<string, string> = {
     '0%,100% { transform: rotate3d(1,1,1,0deg); } 50% { transform: rotate3d(1,1,1,360deg); }',
   'abs-rotate-xyz-5040':
     '0%,100% { transform: rotate3d(1,1,1,0deg); } 50% { transform: rotate3d(1,1,1,5040deg); }',
+
+  'abs-beat':
+    '0%,100% { transform: scale(1); } 15% { transform: scale(1.25); } 30% { transform: scale(1); } 45% { transform: scale(1.25); } 60% { transform: scale(1); }',
+  'abs-beat-fade':
+    '0%,100% { opacity: 1; transform: scale(1); } 15% { opacity: 0.6; transform: scale(1.28); } 30% { opacity: 1; transform: scale(1); } 45% { opacity: 0.6; transform: scale(1.28); } 60% { opacity: 1; transform: scale(1); }',
+  'abs-flash':
+    '0%,100% { opacity: 1; } 25% { opacity: 0; } 50% { opacity: 1; } 75% { opacity: 0; }',
+  'abs-tada':
+    '0% { transform: scale(1) rotate(0deg); } 15% { transform: scale(0.9) rotate(-3deg); } 30% { transform: scale(1.15) rotate(3deg); } 45% { transform: scale(1.1) rotate(-3deg); } 60% { transform: scale(1.1) rotate(3deg); } 75% { transform: scale(1.05) rotate(-3deg); } 100% { transform: scale(1) rotate(0deg); }',
+  'abs-jello':
+    '0%,100% { transform: skew(0deg); } 25% { transform: skew(-12deg); } 50% { transform: skew(12deg); } 75% { transform: skew(-6deg); }',
+  'abs-rubber-band':
+    '0%,100% { transform: scaleX(1) scaleY(1); } 15% { transform: scaleX(1.25) scaleY(0.75); } 30% { transform: scaleX(0.75) scaleY(1.25); } 45% { transform: scaleX(1.15) scaleY(0.85); } 60% { transform: scaleX(0.95) scaleY(1.05); } 75% { transform: scaleX(1.05) scaleY(0.95); }',
+  'abs-buzz':
+    '0%,100% { transform: translateX(0); } 25% { transform: translateX(4px); } 50% { transform: translateX(-4px); } 75% { transform: translateX(4px); }',
+  'abs-wag':
+    '0%,100% { transform: rotate(0deg); } 25% { transform: rotate(12deg); } 50% { transform: rotate(-12deg); } 75% { transform: rotate(12deg); }',
+  'abs-glow':
+    '0%,100% { filter: drop-shadow(0 0 5px currentColor); } 33% { filter: drop-shadow(0 0 15px currentColor) drop-shadow(0 0 25px gold); } 66% { filter: drop-shadow(0 0 15px currentColor) drop-shadow(0 0 25px #ff69b4); }',
+  'abs-breathe':
+    '0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.03); }',
+  'abs-spin-snap':
+    '0% { transform: rotate(0deg); } 25% { transform: rotate(90deg); } 50% { transform: rotate(180deg); } 75% { transform: rotate(270deg); } 100% { transform: rotate(360deg); }',
+}
+
+export function reducedMotionCSS(): string {
+  const selectors = Object.keys(animationClasses).join(',\n')
+  return `@media (prefers-reduced-motion: reduce) {\n${selectors} {\n    animation: none !important;\n  }\n}`
 }
 
 export function animationClassesCSS(): string {
-  return Object.entries(animationClasses)
+  const classes = Object.entries(animationClasses)
     .map(([cls, rule]) => `.${cls} { ${rule} }`)
     .join('\n')
+  return classes + '\n' + reducedMotionCSS()
 }
 
 export function animationKeyframesCSS(): string {
@@ -170,8 +251,12 @@ export function sizeClassesCSS(): string {
 }
 
 export const relativeSizeClasses: Record<string, string> = {
+  'abs-2xs': 'font-size: 0.625em;',
   'abs-xs': 'font-size: 0.75em;',
   'abs-sm': 'font-size: 0.875em;',
+  'abs-lg': 'font-size: 1.25em;',
+  'abs-xl': 'font-size: 1.5em;',
+  'abs-2xl': 'font-size: 2em;',
   'abs-relative-2xs': 'font-size: 0.625em; line-height: 0.1em; vertical-align: 0.225em;',
   'abs-relative-3xs': 'font-size: 0.5em; line-height: 0.12em; vertical-align: 0.3em;',
   'abs-relative-xs': 'font-size: 0.75em; line-height: 0.08333em; vertical-align: 0.125em;',
@@ -203,8 +288,13 @@ export const utilityClasses: Record<string, string> = {
   'abs-transform-vertical': 'transform: scaleY(-1);',
   'abs-transform-both': 'transform: scale(-1);',
   'abs-transform-by': 'transform: rotate(0);',
+  'abs-rotate-by': 'transform: rotate(var(--abs-rotate-angle, 0deg));',
+  'abs-flip-both': 'transform: scale(-1, -1);',
+  'abs-fw': 'width: 1.25em; text-align: center;',
   'abs-float-left': 'float: left; margin-right: 0.3em;',
   'abs-float-right': 'float: right; margin-left: 0.3em;',
+  'abs-pull-left': 'float: left; margin-right: 0.3em;',
+  'abs-pull-right': 'float: right; margin-left: 0.3em;',
   'abs-border': 'border-radius: 0.1em; border: 0.08em solid #eee; padding: 0.2em 0.25em 0.15em;',
   'abs-z-auto': 'z-index: auto;',
   'abs-z-1': 'z-index: 1;',
@@ -216,6 +306,11 @@ export const utilityClasses: Record<string, string> = {
   'abs-z-last': 'z-index: -999999;',
   'abs-hover-scale:hover': 'transform: scale(1.05); transition: transform 0.2s;',
   'abs-hover-shadow:hover': 'box-shadow: 0 4px 6px rgba(55, 60, 457, 0.1);',
+  'abs-inverse': 'color: #fff;',
+  'abs-opacity-25': 'opacity: 0.25;',
+  'abs-opacity-50': 'opacity: 0.5;',
+  'abs-opacity-75': 'opacity: 0.75;',
+  'abs-opacity-100': 'opacity: 1;',
   'abs-version::before': 'content: "Version: 1.0.0-abs";',
   'abs-author::before': 'content: "Author: RK";',
   'abs-author-info::before':
@@ -243,6 +338,56 @@ export function generateColorClasses(): string {
     for (const [shade, hex] of Object.entries(shades)) {
       styles += `.bg-${color}-${shade} { background-color: ${hex}; }\n`
       styles += `.abs-${color}-${shade} { color: ${hex}; }\n`
+    }
+  }
+  return styles
+}
+
+export function generateTransformClasses(): string {
+  let styles = ''
+  for (let i = 2; i <= 8; i++) {
+    styles += `.abs-grow-${i} { transform: scale(${i}); }\n`
+    styles += `.abs-shrink-${i} { transform: scale(${1 / i}); }\n`
+  }
+  for (const px of [4, 8, 12, 16, 20, 24, 32, 48, 64]) {
+    styles += `.abs-up-${px} { transform: translateY(-${px}px); }\n`
+    styles += `.abs-down-${px} { transform: translateY(${px}px); }\n`
+    styles += `.abs-left-${px} { transform: translateX(-${px}px); }\n`
+    styles += `.abs-right-${px} { transform: translateX(${px}px); }\n`
+  }
+  for (const deg of [5, 10, 15, 20, 25, 30]) {
+    styles += `.abs-skew-x-${deg} { transform: skewX(${deg}deg); }\n`
+    styles += `.abs-skew-y-${deg} { transform: skewY(${deg}deg); }\n`
+  }
+  return styles
+}
+
+export function generateComponentClasses(): string {
+  return `
+.abs-stack { display: inline-block; height: 2em; line-height: 2em; position: relative; vertical-align: middle; width: 2em; }
+.abs-stack-1x { line-height: inherit; }
+.abs-stack-2x { position: absolute; left: 0; width: 100%; text-align: center; font-size: 2em; line-height: inherit; }
+.abs-layers { display: inline-block; height: 1em; line-height: 1em; position: relative; text-align: center; vertical-align: middle; width: 1em; }
+.abs-layers-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.5em; font-family: sans-serif; }
+.abs-layers-counter { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #ff4545; border-radius: 1em; color: #fff; font-family: sans-serif; font-size: 0.45em; font-weight: 700; line-height: 1em; min-width: 1em; padding: 0.15em 0.3em; }
+.abs-layers-bottom-left { top: auto; bottom: 0; left: 0; transform: none; }
+.abs-layers-bottom-right { top: auto; bottom: 0; right: 0; left: auto; transform: none; }
+.abs-layers-top-left { top: 0; left: 0; transform: none; }
+.abs-layers-top-right { top: 0; right: 0; left: auto; transform: none; }
+  `.trim()
+}
+
+export function generateGradientClasses(): string {
+  let styles =
+    '.abs-gradient { -webkit-background-clip: text; background-clip: text; color: transparent; background-image: linear-gradient(to right, var(--abs-gradient-from, currentColor), var(--abs-gradient-to, currentColor)); }\n'
+  styles +=
+    '.bg-gradient { background-image: linear-gradient(to right, var(--abs-bg-gradient-from, transparent), var(--abs-bg-gradient-to, transparent)); }\n'
+  for (const [color, shades] of Object.entries(colorPalette)) {
+    for (const [shade, hex] of Object.entries(shades)) {
+      styles += `.abs-gradient-from-${color}-${shade} { --abs-gradient-from: ${hex}; }\n`
+      styles += `.abs-gradient-to-${color}-${shade} { --abs-gradient-to: ${hex}; }\n`
+      styles += `.bg-gradient-from-${color}-${shade} { --abs-bg-gradient-from: ${hex}; }\n`
+      styles += `.bg-gradient-to-${color}-${shade} { --abs-bg-gradient-to: ${hex}; }\n`
     }
   }
   return styles

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AbscomFonts SVG — Browser Example</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; background: #f8fafc; }
+    h2 { margin-top: 2rem; }
+    .icon-grid { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+    .icon-grid svg { cursor: pointer; transition: transform .2s; }
+    .icon-grid svg:hover { transform: scale(1.2); }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 13px; }
+    .demo-box { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+
+  <h1>AbscomFonts SVG — Browser Demo</h1>
+  <p>Icons rendered via <code>renderIcon()</code> from <code>abscomfonts/svg</code>.</p>
+
+  <div id="icons" class="demo-box">
+    <h2>Icons</h2>
+    <div class="icon-grid" id="iconGrid"></div>
+  </div>
+
+  <div id="preview" class="demo-box">
+    <h2>Click an icon above to see its markup</h2>
+    <pre id="markup"></pre>
+  </div>
+
+  <script type="module">
+    // Import the SVG barrel — bundler would tree-shake unused imports
+    import { renderIcon, iconRegistry } from '../dist/svg/index.js'
+
+    const iconGrid = document.getElementById('iconGrid')
+    const markup = document.getElementById('markup')
+    const names = Object.keys(iconRegistry).slice(0, 20)
+
+    names.forEach(name => {
+      const svg = renderIcon(name, { size: 32, color: '#3b82f6' })
+      const wrapper = document.createElement('div')
+      wrapper.innerHTML = svg
+      wrapper.title = name
+      wrapper.style.cursor = 'pointer'
+      wrapper.addEventListener('click', () => {
+        markup.textContent = renderIcon(name, { size: 48, color: '#6366f1', className: 'demo-icon' })
+      })
+      iconGrid.appendChild(wrapper)
+    })
+
+    markup.textContent = renderIcon(names[0], { size: 48, color: '#6366f1', className: 'demo-icon' })
+  </script>
+</body>
+</html>

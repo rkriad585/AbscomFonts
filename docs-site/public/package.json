@@ -1,0 +1,134 @@
+{
+  "name": "abscomfonts",
+  "version": "1.0.0",
+  "description": "Comprehensive icon font framework with 1600+ icons, animations, and color utilities",
+  "author": "rkriad585 (https://github.com/rkriad585)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "homepage": "https://github.com/rkriad585/AbscomFonts#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rkriad585/AbscomFonts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rkriad585/AbscomFonts/issues"
+  },
+  "keywords": [
+    "icons",
+    "font",
+    "icon-font",
+    "css",
+    "animations",
+    "ui",
+    "fontawesome-alternative"
+  ],
+  "sideEffects": [
+    "./src/index.ts",
+    "./src/global.ts"
+  ],
+  "files": [
+    "dist",
+    "fonts",
+    "icons",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./global": {
+      "types": "./dist/abscomfonts.d.ts",
+      "default": "./dist/abscomfonts.iife.js"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "default": "./dist/react/index.js"
+    },
+    "./react/": "./dist/react/",
+    "./vue": {
+      "types": "./dist/vue/index.d.ts",
+      "default": "./dist/vue/index.js"
+    },
+    "./vue/": "./dist/vue/",
+    "./svelte": "./dist/svelte/AbsIcon.svelte",
+    "./svelte/": "./dist/svelte/",
+    "./svg": {
+      "types": "./dist/svg/index.d.ts",
+      "default": "./dist/svg/index.js"
+    },
+    "./icons": "./icons/*.svg",
+    "./icons/*": "./icons/*.svg",
+    "./dist/*": "./dist/*"
+  },
+  "unpkg": "./dist/abscomfonts.iife.js",
+  "jsdelivr": "./dist/abscomfonts.iife.js",
+  "scripts": {
+    "build": "tsx scripts/generate-icons.ts && tsx scripts/generate-meta.ts && tsup && tsx scripts/generate-index-json.ts && mkdir -p dist/svelte && cp src/svelte/AbsIcon.svelte dist/svelte/",
+    "generate:css": "tsx scripts/generate-css.ts",
+    "dev": "tsup --watch",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --check \"src/**/*.ts\"",
+    "format:fix": "prettier --write \"src/**/*.ts\"",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "commit": "git-cz",
+    "docs:dev": "npm run generate:css && tsx scripts/generate-index-json.ts && rm -rf docs-site/public/dist docs-site/public/fonts 2>/dev/null && cp -r dist docs-site/public/ && cp -r fonts docs-site/public/ && cp package.json docs-site/public/ && cp .bundle-sizes.json docs-site/public/ && vitepress dev docs-site",
+    "docs:build": "npm run build && npm run generate:css && rm -rf docs-site/public/dist docs-site/public/fonts && cp -r dist docs-site/public/ && cp -r fonts docs-site/public/ && cp package.json docs-site/public/ && cp .bundle-sizes.json docs-site/public/ && vitepress build docs-site",
+    "docs:preview": "vitepress preview docs-site",
+    "prepare": "husky",
+    "semantic-release": "semantic-release",
+    "prepublishOnly": "npm run build"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.0",
+    "@commitlint/config-conventional": "^21.2.0",
+    "@eslint/js": "^10.0.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.8",
+    "@semantic-release/npm": "^13.1.5",
+    "@types/react": "^19.2.17",
+    "@typescript-eslint/eslint-plugin": "^8.62.1",
+    "@typescript-eslint/parser": "^8.62.1",
+    "commitizen": "^4.3.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^10.6.0",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
+    "opentype.js": "^2.0.0",
+    "prettier": "^3.9.4",
+    "react": "^19.2.7",
+    "semantic-release": "^25.0.5",
+    "svelte": "^5.56.4",
+    "tsup": "^8.4.0",
+    "tsx": "^4.22.4",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "^8.62.1",
+    "vitepress": "^1.6.4",
+    "vitest": "^4.1.9",
+    "vue": "^3.5.39"
+  }
+}

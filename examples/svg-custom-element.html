@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AbscomFonts SVG — Custom Element</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; background: #f8fafc; }
+    .demo-box { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; margin: 1rem 0; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+    .controls { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem; }
+    .controls label { font-weight: 600; }
+    .controls input, .controls select { padding: .4rem .6rem; border: 1px solid #cbd5e1; border-radius: 6px; }
+    abs-icon { display: inline-flex; vertical-align: middle; }
+  </style>
+</head>
+<body>
+
+  <h1>AbscomFonts SVG — Custom Element Demo</h1>
+  <p>A custom <code>&lt;abs-icon&gt;</code> element using <code>renderIcon()</code>.</p>
+
+  <div class="demo-box">
+    <div class="controls">
+      <label>Icon:</label>
+      <select id="iconSelect">
+        <option value="heart">heart</option>
+        <option value="star">star</option>
+        <option value="cog">cog</option>
+        <option value="user">user</option>
+        <option value="camera">camera</option>
+        <option value="bell">bell</option>
+        <option value="rocket">rocket</option>
+        <option value="home">home</option>
+      </select>
+
+      <label>Size:</label>
+      <input type="range" id="sizeRange" min="16" max="128" value="48" />
+
+      <label>Color:</label>
+      <input type="color" id="colorPicker" value="#3b82f6" />
+    </div>
+
+    <abs-icon name="heart" size="48" color="#3b82f6"></abs-icon>
+
+    <pre id="output"></pre>
+  </div>
+
+  <script type="module">
+    import { renderIcon } from '../dist/svg/index.js'
+
+    class AbsIcon extends HTMLElement {
+      connectedCallback() {
+        this.render()
+      }
+
+      static get observedAttributes() { return ['name', 'size', 'color', 'class'] }
+
+      attributeChangedCallback() { this.render() }
+
+      render() {
+        const name = this.getAttribute('name') || 'heart'
+        const size = parseInt(this.getAttribute('size') || '24', 10)
+        const color = this.getAttribute('color') || 'currentColor'
+        const cls = this.getAttribute('class') || ''
+        this.innerHTML = renderIcon(name, { size, color, className: cls })
+      }
+    }
+
+    customElements.define('abs-icon', AbsIcon)
+
+    const icon = document.querySelector('abs-icon')
+    const select = document.getElementById('iconSelect')
+    const sizeRange = document.getElementById('sizeRange')
+    const colorPicker = document.getElementById('colorPicker')
+    const output = document.getElementById('output')
+
+    function update() {
+      icon.setAttribute('name', select.value)
+      icon.setAttribute('size', sizeRange.value)
+      icon.setAttribute('color', colorPicker.value)
+      output.textContent = icon.innerHTML
+    }
+
+    select.addEventListener('change', update)
+    sizeRange.addEventListener('input', update)
+    colorPicker.addEventListener('input', update)
+    update()
+  </script>
+</body>
+</html>

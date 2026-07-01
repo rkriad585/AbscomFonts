@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Animations - AbscomFonts</title>
+  <script src="../dist/abscomfonts.iife.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; }
+    h1 { text-align: center; margin-bottom: .5rem; font-size: 2rem; color: #f8fafc; }
+    .subtitle { text-align: center; color: #64748b; margin-bottom: 2rem; }
+    h2 { margin: 2rem 0 1rem; color: #94a3b8; border-bottom: 1px solid #1e293b; padding-bottom: .5rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; }
+    .card { background: #1e293b; border-radius: 8px; padding: 1.5rem; text-align: center; cursor: pointer; transition: background .2s, transform .1s; }
+    .card:hover { background: #334155; transform: scale(1.05); }
+    .card:active { transform: scale(.95); }
+    .card span { display: block; margin-top: 1rem; font-size: .8rem; color: #64748b; }
+    .card small { display: block; font-size: .65rem; color: #475569; margin-top: .25rem; }
+    .controls { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-bottom: 2rem; justify-content: center; }
+    .controls label { color: #94a3b8; font-size: .9rem; }
+    .controls input { padding: .5rem .75rem; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #e2e8f0; font-size: .9rem; width: 120px; outline: none; }
+    .controls input:focus { border-color: #6366f1; }
+    .demo-icon { text-align: center; padding: 2rem; background: #1e293b; border-radius: 8px; margin-bottom: 2rem; }
+    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: #22c55e; color: #fff; padding: .75rem 1.5rem; border-radius: 8px; font-size: .9rem; opacity: 0; transition: all .3s; z-index: 9999; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <h1>Advanced Animations</h1>
+  <p class="subtitle">Click any icon to copy its class name</p>
+
+  <h2>Animation Control Demo</h2>
+  <div class="controls">
+    <label>Duration: <input type="range" id="durationRange" min="0.1" max="5" step="0.1" value="1"> <span id="durationValue">1s</span></label>
+    <label>Delay: <input type="range" id="delayRange" min="0" max="3" step="0.1" value="0"> <span id="delayValue">0s</span></label>
+  </div>
+  <div class="demo-icon">
+    <i id="controlDemo" class="abs abs-heart abs-beat abs-5x abs-red-500"></i>
+    <p style="color:#64748b;margin-top:1rem;font-size:.85rem;">abs-beat → adjustable with sliders above</p>
+  </div>
+
+  <h2>New Beat & Fade Animations</h2>
+  <div class="grid">
+    <div class="card" data-class="abs abs-heart abs-beat abs-3x abs-red-500"><i class="abs abs-heart abs-beat abs-3x abs-red-500"></i><span>abs-beat</span><small>abs-heart</small></div>
+    <div class="card" data-class="abs abs-star abs-beat abs-3x abs-yellow-500"><i class="abs abs-star abs-beat abs-3x abs-yellow-500"></i><span>abs-beat</span><small>abs-star</small></div>
+    <div class="card" data-class="abs abs-heart abs-beat-fade abs-3x abs-rose-500"><i class="abs abs-heart abs-beat-fade abs-3x abs-rose-500"></i><span>abs-beat-fade</span><small>abs-heart</small></div>
+    <div class="card" data-class="abs abs-star abs-beat-fade abs-3x abs-amber-400"><i class="abs abs-star abs-beat-fade abs-3x abs-amber-400"></i><span>abs-beat-fade</span><small>abs-star</small></div>
+    <div class="card" data-class="abs abs-bell abs-flash abs-3x abs-yellow-400"><i class="abs abs-bell abs-flash abs-3x abs-yellow-400"></i><span>abs-flash</span><small>abs-bell</small></div>
+    <div class="card" data-class="abs abs-lightbulb abs-flash abs-3x abs-amber-500"><i class="abs abs-lightbulb abs-flash abs-3x abs-amber-500"></i><span>abs-flash</span><small>abs-lightbulb</small></div>
+    <div class="card" data-class="abs abs-star abs-tada abs-3x abs-purple-500"><i class="abs abs-star abs-tada abs-3x abs-purple-500"></i><span>abs-tada</span><small>abs-star</small></div>
+    <div class="card" data-class="abs abs-heart abs-tada abs-3x abs-pink-500"><i class="abs abs-heart abs-tada abs-3x abs-pink-500"></i><span>abs-tada</span><small>abs-heart</small></div>
+  </div>
+
+  <h2>Wobble & Stretch Animations</h2>
+  <div class="grid">
+    <div class="card" data-class="abs abs-heart abs-jello abs-3x abs-violet-500"><i class="abs abs-heart abs-jello abs-3x abs-violet-500"></i><span>abs-jello</span><small>abs-heart</small></div>
+    <div class="card" data-class="abs abs-star abs-jello abs-3x abs-indigo-500"><i class="abs abs-star abs-jello abs-3x abs-indigo-500"></i><span>abs-jello</span><small>abs-star</small></div>
+    <div class="card" data-class="abs abs-star abs-rubber-band abs-3x abs-emerald-500"><i class="abs abs-star abs-rubber-band abs-3x abs-emerald-500"></i><span>abs-rubber-band</span><small>abs-star</small></div>
+    <div class="card" data-class="abs abs-heart abs-rubber-band abs-3x abs-rose-500"><i class="abs abs-heart abs-rubber-band abs-3x abs-rose-500"></i><span>abs-rubber-band</span><small>abs-heart</small></div>
+    <div class="card" data-class="abs abs-bell abs-wag abs-3x abs-orange-500"><i class="abs abs-bell abs-wag abs-3x abs-orange-500"></i><span>abs-wag</span><small>abs-bell</small></div>
+    <div class="card" data-class="abs abs-flag abs-wag abs-3x abs-red-500"><i class="abs abs-flag abs-wag abs-3x abs-red-500"></i><span>abs-wag</span><small>abs-flag</small></div>
+  </div>
+
+  <h2>Vibration & Buzz</h2>
+  <div class="grid">
+    <div class="card" data-class="abs abs-phone abs-buzz abs-3x abs-green-500"><i class="abs abs-phone abs-buzz abs-3x abs-green-500"></i><span>abs-buzz</span><small>abs-phone</small></div>
+    <div class="card" data-class="abs abs-bell abs-buzz abs-3x abs-amber-500"><i class="abs abs-bell abs-buzz abs-3x abs-amber-500"></i><span>abs-buzz</span><small>abs-bell</small></div>
+    <div class="card" data-class="abs abs-cog abs-buzz abs-3x abs-sky-500"><i class="abs abs-cog abs-buzz abs-3x abs-sky-500"></i><span>abs-buzz</span><small>abs-cog</small></div>
+    <div class="card" data-class="abs abs-phone abs-vibrate abs-3x abs-green-500"><i class="abs abs-phone abs-vibrate abs-3x abs-green-500"></i><span>abs-vibrate</span><small>abs-phone</small></div>
+  </div>
+
+  <h2>Glow & Breathe</h2>
+  <div class="grid">
+    <div class="card" data-class="abs abs-star abs-glow abs-3x abs-yellow-500"><i class="abs abs-star abs-glow abs-3x abs-yellow-500"></i><span>abs-glow</span><small>abs-star</small></div>
+    <div class="card" data-class="abs abs-heart abs-glow abs-3x abs-pink-500"><i class="abs abs-heart abs-glow abs-3x abs-pink-500"></i><span>abs-glow</span><small>abs-heart</small></div>
+    <div class="card" data-class="abs abs-star abs-glow-gold abs-3x"><i class="abs abs-star abs-glow-gold abs-3x"></i><span>abs-glow-gold</span><small>abs-star</small></div>
+    <div class="card" data-class="abs abs-star abs-breathe abs-3x abs-cyan-500"><i class="abs abs-star abs-breathe abs-3x abs-cyan-500"></i><span>abs-breathe</span><small>abs-star</small></div>
+    <div class="card" data-class="abs abs-heart abs-breathe abs-3x abs-teal-500"><i class="abs abs-heart abs-breathe abs-3x abs-teal-500"></i><span>abs-breathe</span><small>abs-heart</small></div>
+  </div>
+
+  <h2>Spin Snap</h2>
+  <div class="grid">
+    <div class="card" data-class="abs abs-cog abs-spin-snap abs-3x abs-blue-500"><i class="abs abs-cog abs-spin-snap abs-3x abs-blue-500"></i><span>abs-spin-snap</span><small>abs-cog</small></div>
+    <div class="card" data-class="abs abs-spinner abs-spin-snap abs-3x abs-indigo-500"><i class="abs abs-spinner abs-spin-snap abs-3x abs-indigo-500"></i><span>abs-spin-snap</span><small>abs-spinner</small></div>
+    <div class="card" data-class="abs abs-sync abs-spin-snap abs-3x abs-emerald-500"><i class="abs abs-sync abs-spin-snap abs-3x abs-emerald-500"></i><span>abs-spin-snap</span><small>abs-sync</small></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    document.querySelectorAll('.card').forEach(el => {
+      el.addEventListener('click', () => {
+        const text = el.dataset.class;
+        const toast = document.getElementById('toast');
+        navigator.clipboard.writeText(text).then(() => {
+          toast.textContent = 'Copied: ' + text; toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 1500);
+        });
+      });
+    });
+
+    const demo = document.getElementById('controlDemo');
+    const durRange = document.getElementById('durationRange');
+    const delayRange = document.getElementById('delayRange');
+    const durVal = document.getElementById('durationValue');
+    const delayVal = document.getElementById('delayValue');
+
+    durRange.addEventListener('input', () => {
+      durVal.textContent = durRange.value + 's';
+      demo.style.setProperty('--abs-animation-duration', durRange.value + 's');
+    });
+    delayRange.addEventListener('input', () => {
+      delayVal.textContent = delayRange.value + 's';
+      demo.style.setProperty('--abs-animation-delay', delayRange.value + 's');
+    });
+  </script>
+</body>
+</html>

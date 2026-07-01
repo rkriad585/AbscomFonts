@@ -8,13 +8,16 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; }
-    h1 { text-align: center; margin-bottom: .5rem; font-size: 2rem; color: #f8fafc; }
+    h1 { text-align: center; margin-bottom: .25rem; font-size: 2rem; color: #f8fafc; }
     .subtitle { text-align: center; color: #64748b; margin-bottom: 2rem; }
-    .search-box { max-width: 400px; margin: 0 auto 2rem; }
-    .search-box input { width: 100%; padding: .75rem 1rem; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: #e2e8f0; font-size: 1rem; outline: none; }
-    .search-box input:focus { border-color: #6366f1; }
-    .search-box input::placeholder { color: #475569; }
-    .stats { text-align: center; color: #64748b; font-size: .85rem; margin-bottom: 1rem; }
+    .controls { max-width: 600px; margin: 0 auto 1.5rem; display: flex; gap: .75rem; flex-wrap: wrap; }
+    .controls input { flex: 1; min-width: 200px; padding: .75rem 1rem; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: #e2e8f0; font-size: 1rem; outline: none; }
+    .controls input:focus { border-color: #6366f1; }
+    .controls input::placeholder { color: #475569; }
+    .controls select { padding: .75rem 1rem; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: #e2e8f0; font-size: .85rem; outline: none; cursor: pointer; max-width: 200px; }
+    .controls select:focus { border-color: #6366f1; }
+    .loaded { text-align: center; color: #64748b; font-size: .85rem; margin-bottom: .75rem; }
+    .stats { text-align: center; color: #94a3b8; font-size: .85rem; margin-bottom: 1rem; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: .75rem; }
     .card { background: #1e293b; border-radius: 8px; padding: 1rem; text-align: center; cursor: pointer; transition: background .2s, transform .1s; }
     .card:hover { background: #334155; transform: scale(1.05); }
@@ -23,103 +26,84 @@
     .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: #22c55e; color: #fff; padding: .75rem 1.5rem; border-radius: 8px; font-size: .9rem; opacity: 0; transition: all .3s; z-index: 9999; pointer-events: none; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .none { text-align: center; color: #475569; padding: 3rem; grid-column: 1 / -1; }
+    .cat-label { grid-column: 1 / -1; color: #6366f1; font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; padding: 1rem 0 .25rem; border-bottom: 1px solid #1e293b; margin-bottom: .25rem; }
+    @media (max-width: 600px) { .controls select { max-width: 100%; } }
   </style>
 </head>
 <body>
   <h1>Icon Picker</h1>
-  <p class="subtitle">Search icons · click to copy class name</p>
+  <p class="subtitle">Search 2492 icons · click to copy class name</p>
 
-  <div class="search-box">
+  <div class="controls">
     <input type="text" id="search" placeholder="Search icons..." autofocus>
+    <select id="category"></select>
   </div>
+  <div class="loaded" id="loaded"></div>
   <div class="stats" id="stats"></div>
   <div class="grid" id="grid"></div>
   <div class="toast" id="toast"></div>
 
   <script>
-    // Common icons available in AbscomFonts
-    const icons = [
-      'heart', 'star', 'home', 'user', 'camera', 'bell', 'envelope', 'phone',
-      'search', 'download', 'upload', 'trash', 'cog', 'lock', 'unlock',
-      'calendar', 'clock', 'eye', 'eye-slash', 'book', 'bookmark',
-      'tag', 'tags', 'map-pin', 'map', 'globe', 'flag', 'filter',
-      'folder', 'folder-open', 'file', 'image', 'video', 'music',
-      'print', 'share', 'link', 'paperclip', 'scissors', 'pencil',
-      'edit', 'check', 'xmark', 'plus', 'minus', 'info', 'warning',
-      'question', 'exclamation', 'check-circle', 'xmark-circle',
-      'plus-circle', 'minus-circle', 'info-circle', 'question-circle',
-      'exclamation-circle', 'arrow-right', 'arrow-left', 'arrow-up',
-      'arrow-down', 'chevron-right', 'chevron-left', 'chevron-up',
-      'chevron-down', 'angle-right', 'angle-left', 'angle-up',
-      'angle-down', 'caret-right', 'caret-left', 'caret-up', 'caret-down',
-      'expand', 'compress', 'arrows', 'sync', 'spinner', 'repeat',
-      'undo', 'redo', 'random', 'shuffle', 'play', 'pause', 'stop',
-      'forward', 'backward', 'step-forward', 'step-backward',
-      'volume-up', 'volume-down', 'volume-off', 'mute',
-      'sun', 'moon', 'cloud', 'cloud-rain', 'cloud-sun', 'snowflake',
-      'bolt', 'droplet', 'fire', 'lightbulb', 'palette', 'magic',
-      'shield', 'shield-check', 'shield-exclamation', 'hammer',
-      'wrench', 'screwdriver', 'tools', 'clipboard', 'clipboard-check',
-      'clipboard-list', 'comments', 'comment', 'quote-left', 'quote-right',
-      'thumbs-up', 'thumbs-down', 'smile', 'frown', 'meh',
-      'gift', 'trophy', 'medal', 'crown', 'gem', 'diamond',
-      'cart', 'cart-plus', 'shopping-bag', 'credit-card', 'wallet',
-      'bank', 'money', 'receipt', 'barcode', 'qrcode',
-      'truck', 'box', 'box-open', 'package', 'ship', 'plane',
-      'road', 'sign', 'location', 'compass', 'navigation',
-      'github', 'twitter', 'youtube', 'facebook', 'instagram',
-      'linkedin', 'discord', 'slack', 'npm', 'python', 'react',
-      'figma', 'docker', 'android', 'apple', 'windows', 'linux',
-      'chrome', 'firefox', 'edge', 'safari', 'git', 'terminal',
-      'code', 'database', 'server', 'cloud-upload', 'cloud-download',
-      'wifi', 'bluetooth', 'rss', 'sitemap', 'layer', 'layers',
-      'grid', 'list', 'menu', 'more-horizontal', 'more-vertical',
-      'menu-hamburger', 'close', 'maximize', 'minimize',
-      'cube', 'cubes', 'puzzle', 'paint-brush', 'paint-roller',
-      'eraser', 'ruler', 'pen', 'pen-nib', 'pen-fancy',
-      'copy', 'paste', 'cut', 'save', 'file-export', 'file-import',
-      'battery-full', 'battery-half', 'battery-empty', 'signal',
-      'microchip', 'cpu', 'hard-drive', 'monitor', 'tablet', 'mobile',
-      'keyboard', 'mouse', 'headphones', 'microphone', 'speaker',
-      'gamepad', 'joystick', 'robot', 'atom', 'flask', 'beaker',
-      'graduation-cap', 'school', 'book-open', 'library',
-      'award', 'certificate', 'ribbon', 'badge', 'star-half',
-      'star-empty', 'heart-half', 'heart-empty', 'bolt',
-      'bell-off', 'bell-ring', 'alarm', 'stopwatch', 'timer',
-      'hourglass', 'watch', 'wallet', 'piggy-bank', 'donate',
-      'hand', 'handshake', 'users', 'user-plus', 'user-minus',
-      'user-check', 'user-xmark', 'user-gear', 'id-card',
-      'address-card', 'building', 'industry', 'factory', 'tree',
-      'leaf', 'seedling', 'flower', 'campground', 'mountain',
-      'water', 'swimmer', 'bicycle', 'car', 'bus', 'train',
-      'ship', 'plane', 'rocket', 'satellite', 'space',
-      'cookie', 'cake', 'mug', 'coffee', 'bottle', 'glass',
-      'utensils', 'pizza', 'hamburger', 'apple-alt', 'carrot',
-      'anchor', 'fish', 'dog', 'cat', 'paw', 'feather',
-      'bug', 'spider', 'dragon', 'hippo', 'otter', 'crow'
-    ];
+    let allIcons = [];
+    let categories = [];
 
     const grid = document.getElementById('grid');
     const search = document.getElementById('search');
+    const catSelect = document.getElementById('category');
     const stats = document.getElementById('stats');
+    const loaded = document.getElementById('loaded');
     const toast = document.getElementById('toast');
 
-    function render(filter) {
-      const filtered = filter
-        ? icons.filter(i => i.includes(filter.toLowerCase()))
-        : icons;
+    function tokenize(s) {
+      return s.toLowerCase().split(/[^a-zA-Z0-9]+/).filter(Boolean);
+    }
 
-      stats.textContent = filtered.length === icons.length
-        ? `Showing all ${icons.length} icons`
-        : `Found ${filtered.length} of ${icons.length} icons`;
+    function score(icon, queryTokens) {
+      const name = icon.n.toLowerCase();
+      const joined = queryTokens.join('-');
+      if (name === joined) return 100;
+      if (icon.k.some(k => k.toLowerCase() === joined)) return 90;
+      if (name.startsWith(joined)) return 80;
+      if (icon.k.some(k => k.startsWith(joined))) return 70;
+      if (name.includes(joined)) return 50;
+      if (icon.a && icon.a.some(a => a.toLowerCase() === joined)) return 85;
+      return queryTokens.filter(t => icon.k.some(k => k.includes(t))).length * 10;
+    }
 
-      grid.innerHTML = filtered.map(icon =>
-        `<div class="card" data-class="abs abs-${icon}"><i class="abs abs-${icon} abs-2x"></i><span>abs-${icon}</span></div>`
-      ).join('');
+    function render() {
+      const q = search.value.trim();
+      const cat = catSelect.value;
+      const qTokens = q ? tokenize(q) : [];
+
+      let filtered = allIcons;
+      if (cat) filtered = filtered.filter(i => i.g === cat);
+
+      if (q) {
+        const scored = filtered.map(i => ({ ...i, s: score(i, qTokens) })).filter(i => i.s > 0);
+        scored.sort((a, b) => b.s - a.s);
+        filtered = scored.slice(0, 100);
+      } else {
+        filtered = filtered.sort((a, b) => a.n.localeCompare(b.n)).slice(0, 200);
+      }
+
+      stats.textContent = q || cat
+        ? `Found ${filtered.length} icon${filtered.length !== 1 ? 's' : ''}${q ? ` for "${q}"` : ''}${cat ? ` in ${cat}` : ''}`
+        : `Showing ${filtered.length} of ${allIcons.length} icons`;
 
       if (filtered.length === 0) {
         grid.innerHTML = '<div class="none">No icons found</div>';
+        return;
       }
+
+      let lastCat = '';
+      grid.innerHTML = filtered.map(icon => {
+        let label = '';
+        if (!q && icon.g !== lastCat) {
+          lastCat = icon.g;
+          label = `<div class="cat-label">${icon.g}</div>`;
+        }
+        return `${label}<div class="card" data-class="abs abs-${icon.n}"><i class="abs abs-${icon.n} abs-2x"></i><span>abs-${icon.n}</span></div>`;
+      }).join('');
 
       document.querySelectorAll('.card').forEach(el => {
         el.addEventListener('click', () => {
@@ -144,8 +128,27 @@
       });
     }
 
-    search.addEventListener('input', () => render(search.value));
-    render('');
+    search.addEventListener('input', render);
+    catSelect.addEventListener('change', render);
+
+    fetch('../dist/icons-index.json')
+      .then(r => r.json())
+      .then(data => {
+        allIcons = data;
+        const cats = {};
+        for (const icon of allIcons) {
+          cats[icon.g] = (cats[icon.g] || 0) + 1;
+        }
+        categories = Object.entries(cats).sort((a, b) => b[1] - a[1]);
+        catSelect.innerHTML = '<option value="">All categories</option>'
+          + categories.map(([c, n]) => `<option value="${c}">${c} (${n})</option>`).join('');
+        loaded.textContent = `Loaded ${allIcons.length} icons · ${categories.length} categories`;
+        render();
+      })
+      .catch(err => {
+        loaded.textContent = 'Failed to load icons-index.json. Run `npm run build` first.';
+        grid.innerHTML = `<div class="none">${err.message}</div>`;
+      });
   </script>
 </body>
 </html>

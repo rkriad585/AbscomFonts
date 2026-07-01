@@ -1,0 +1,47 @@
+[
+  {
+    "name": "dist/index.js",
+    "description": "Main ESM bundle (font + SVG utils + search + meta)",
+    "size": 502482
+  },
+  {
+    "name": "dist/index.cjs",
+    "description": "Main CJS bundle",
+    "size": 503874
+  },
+  {
+    "name": "dist/abscomfonts.iife.js",
+    "description": "IIFE bundle (browser script tag)",
+    "size": 93470
+  },
+  {
+    "name": "dist/abscomfonts.css",
+    "description": "CSS framework (fonts + animations + classes)",
+    "size": 0
+  },
+  {
+    "name": "dist/icons-index.json",
+    "description": "Search index (abbreviated JSON)",
+    "size": 244390
+  },
+  {
+    "name": "dist/svg/index.js",
+    "description": "SVG barrel (all icon modules + renderer)",
+    "size": 3344408
+  },
+  {
+    "name": "dist/react/index.js",
+    "description": "React <AbsIcon> component",
+    "size": 1041
+  },
+  {
+    "name": "dist/vue/index.js",
+    "description": "Vue <AbsIcon> component",
+    "size": 1178
+  },
+  {
+    "name": "dist/svelte/AbsIcon.svelte",
+    "description": "Svelte AbsIcon component",
+    "size": 845
+  }
+]

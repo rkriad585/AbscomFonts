@@ -16,6 +16,48 @@ export function fontIcon(name: string, ...modifiers: string[]): string {
   return `<i class="abs abs-${name}${modifiers.length ? ' ' + modifiers.join(' ') : ''}" aria-hidden="true"></i>`
 }
 
+export interface AbsIconOptions {
+  className?: string
+  ariaLabel?: string
+  style?: string
+}
+
+export function absIcon(name: string, options?: AbsIconOptions): string {
+  const cls = `abs abs-${name}${options?.className ? ' ' + options.className : ''}`
+  const ariaLabel = options?.ariaLabel
+  const aria = ariaLabel ? `role="img" aria-label="${ariaLabel}"` : 'aria-hidden="true"'
+  const style = options?.style ? ` style="${options.style}"` : ''
+  return `<i class="${cls}"${aria}${style}></i>`
+}
+
+export function absLayer(...children: string[]): string {
+  return `<span class="abs-layers">${children.join('')}</span>`
+}
+
+export function absCounter(count: string | number): string {
+  return `<span class="abs-layers-counter">${count}</span>`
+}
+
+export function absText(content: string): string {
+  return `<span class="abs-layers-text">${content}</span>`
+}
+
+export function startAbsAnimation(element: Element): void {
+  ;(element as HTMLElement).style.animationPlayState = 'running'
+}
+
+export function stopAbsAnimation(element: Element): void {
+  ;(element as HTMLElement).style.animation = 'none'
+}
+
+export function pauseAbsAnimation(element: Element): void {
+  ;(element as HTMLElement).style.animationPlayState = 'paused'
+}
+
+export function resumeAbsAnimation(element: Element): void {
+  ;(element as HTMLElement).style.animationPlayState = 'running'
+}
+
 export { abscomIcon, colorPalette, mainClasses, generateColorClasses }
 
 function init(): void {
@@ -89,12 +131,38 @@ function init(): void {
     'abs-transform-both',
     'abs-xs',
     'abs-sm',
+    'abs-lg',
+    'abs-xl',
+    'abs-2xl',
+    'abs-2xs',
+    'abs-fw',
+    'abs-inverse',
+    'abs-opacity-25',
+    'abs-opacity-50',
+    'abs-opacity-75',
+    'abs-opacity-100',
+    'abs-gradient',
+    'bg-gradient',
+    'abs-rotate-by',
+    'abs-flip-both',
+    'abs-stack',
+    'abs-stack-1x',
+    'abs-stack-2x',
+    'abs-layers',
+    'abs-layers-text',
+    'abs-layers-counter',
+    'abs-layers-bottom-left',
+    'abs-layers-bottom-right',
+    'abs-layers-top-left',
+    'abs-layers-top-right',
+    'abs-pull-left',
+    'abs-pull-right',
   ])
 
   function isUtilityClass(cls: string): boolean {
     if (utilityClassPrefixes.has(cls)) return true
     if (
-      /^abs-(spin|spin-reverse|bounce|wobble|pulse|rgb-change|shake|skew|flip|fade|glow-gold|zoom|slide|slide-up-down|rotate3d|blink|swing|float|jelly|vibrate|rainbow|flip-horizontal|flip-vertical)$/.test(
+      /^abs-(spin|spin-reverse|bounce|wobble|pulse|rgb-change|shake|skew|flip|fade|glow-gold|zoom|slide|slide-up-down|rotate3d|blink|swing|float|jelly|vibrate|rainbow|flip-horizontal|flip-vertical|beat|beat-fade|flash|tada|jello|rubber-band|buzz|wag|glow|breathe|spin-snap)$/.test(
         cls,
       )
     )
@@ -103,6 +171,17 @@ function init(): void {
       return true
     if (/^abs-[a-z]+-(50|100|200|300|400|500|600|700|800|900|950)$/.test(cls)) return true
     if (/^bg-[a-z]+-(50|100|200|300|400|500|600|700|800|900|950)$/.test(cls)) return true
+    if (/^abs-(grow|shrink)-[2-8]$/.test(cls)) return true
+    if (/^abs-(up|down|left|right)-(4|8|12|16|20|24|32|48|64)$/.test(cls)) return true
+    if (/^abs-skew-[xy]-(5|10|15|20|25|30)$/.test(cls)) return true
+    if (/^abs-gradient-from-[a-z]+-(50|100|200|300|400|500|600|700|800|900|950)$/.test(cls))
+      return true
+    if (/^abs-gradient-to-[a-z]+-(50|100|200|300|400|500|600|700|800|900|950)$/.test(cls))
+      return true
+    if (/^bg-gradient-from-[a-z]+-(50|100|200|300|400|500|600|700|800|900|950)$/.test(cls))
+      return true
+    if (/^bg-gradient-to-[a-z]+-(50|100|200|300|400|500|600|700|800|900|950)$/.test(cls))
+      return true
     return false
   }
 
