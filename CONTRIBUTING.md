@@ -29,7 +29,7 @@ docs/            # Documentation markdown files
 
 1. Add the icon name and hex codepoint to `abscomIcon` in `src/icons.ts`.
 2. Ensure the glyph exists in the font binaries under `fonts/`.
-3. Add the `abs-{name}` class to `css-classes.txt`.
+3. The icon class will be available as `abs-{name}` based on the codepoint in `src/icons.ts`.
 4. Rebuild: `npm run build`
 
 Icon names use kebab-case. Aliases pointing to the same codepoint are welcome.

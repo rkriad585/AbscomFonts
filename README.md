@@ -7,6 +7,9 @@
 [![npm version](https://img.shields.io/npm/v/abscomfonts)](https://www.npmjs.com/package/abscomfonts)
 [![license](https://img.shields.io/npm/l/abscomfonts)](LICENSE)
 [![npm downloads](https://img.shields.io/npm/dm/abscomfonts)](https://www.npmjs.com/package/abscomfonts)
+[![CI](https://github.com/rkriad585/AbscomFonts/actions/workflows/ci.yml/badge.svg)](https://github.com/rkriad585/AbscomFonts/actions/workflows/ci.yml)
+[![Release](https://github.com/rkriad585/AbscomFonts/actions/workflows/release.yml/badge.svg)](https://github.com/rkriad585/AbscomFonts/actions/workflows/release.yml)
+[![GitHub stars](https://img.shields.io/github/stars/rkriad585/AbscomFonts)](https://github.com/rkriad585/AbscomFonts)
 
 A comprehensive icon font framework with 1600+ icons, 30+ CSS animations, a Tailwind-inspired color palette, and a built-in validation system. Works in any web project — no build tools required.
 
@@ -21,7 +24,7 @@ AbscomFonts is a single-script icon framework that auto-injects everything into 
 **Key features:**
 - **2492 icons** — Brands, Solid, and Regular styles
 - **30+ animations** — Spin, bounce, pulse, shake, and more
-- **275 color classes** — 25 colors × 11 shades (Tailwind palette)
+- **242 color classes** — 22 colors × 11 shades (Tailwind palette)
 - **Size utilities** — Fixed (1x–16x) and relative sizing
 - **Transform & rotate** — 90°, 180°, 270°, flip, 3D rotation
 - **Validation system** — Detects missing classes, wrong elements
@@ -48,32 +51,105 @@ npm install abscomfonts
 ```
 
 ```javascript
-// ESM / TypeScript
-import { abscomIcon, colorPalette, generateColorClasses } from 'abscomfonts';
+// ESM / TypeScript — font-based API
+import { abscomIcon, colorPalette, generateColorClasses, fontIcon } from 'abscomfonts';
 
-// CommonJS
+// Tree-shakeable SVG icons
+import { Heart, Star, renderIcon } from 'abscomfonts/svg';
+
+// CommonJS — font-based only
 const abscomfonts = require('abscomfonts');
 ```
 
 ---
 
-## Project Structure
+## SVG Framework & Bundle Size
+
+AbscomFonts provides two consumption methods:
+
+| Approach | Bundle Size | Use Case |
+|----------|-------------|----------|
+| **Font-based** (CSS) | **~86 KB** (ESM) / **91 KB** (IIFE) | Drop-in CDN usage, zero build step |
+| **SVG tree-shakeable** | **~2.17 MB** (full) → **~1 KB/icon** tree-shaken | Modern bundlers (Vite, Webpack, esbuild) |
+
+### Tree-Shakeable SVG Imports
+
+```typescript
+// Import individual icons (tree-shakeable)
+import { Heart, Star, User } from 'abscomfonts/svg'
+
+// Dynamic runtime rendering
+import { renderIcon } from 'abscomfonts/svg'
+document.body.innerHTML = renderIcon('heart', { size: 32, color: '#dc2626' })
+
+// Raw SVG path data
+import { getIconPaths } from 'abscomfonts/svg'
+const paths = getIconPaths('heart') // SVG path string
+
+// Full registry for programmatic access
+import { iconRegistry } from 'abscomfonts/svg'
+```
+
+With `sideEffects: false`, bundlers only include the icons you actually import.
+
+### Framework Components
+
+```tsx
+// React
+import { Heart } from 'abscomfonts/svg'
+import { AbsIcon } from 'abscomfonts/react'
+<AbsIcon path={Heart} size={32} color="#e74c3c" spin />
+
+// Vue
+import { Heart } from 'abscomfonts/svg'
+import { AbsIcon } from 'abscomfonts/vue'
+<AbsIcon :path="Heart" :size="32" spin />
+
+// Svelte
+import { Heart } from 'abscomfonts/svg'
+import { AbsIcon } from 'abscomfonts/svelte'
+<AbsIcon path={Heart} size={32} spin />
+```
+
+---
 
 ```
 AbscomFonts/
 ├── src/
 │   ├── icons.ts          # 2492 icon codepoint mappings
+│   ├── icons-meta.ts     # Auto-generated icon metadata (categories, keywords, aliases)
+│   ├── search.ts         # searchIcons(), getIconMeta(), getCategories() API
 │   ├── palette.ts        # 25-color palette (11 shades each)
 │   ├── css.ts            # CSS templates + generateColorClasses()
 │   ├── info.ts           # Console info utility
+│   ├── svg/              # Tree-shakeable SVG modules (auto-generated)
+│   │   ├── index.ts      # Barrel export of all icons
+│   │   ├── renderer.ts   # renderIcon(), getIconPaths(), getIconStyle()
+│   │   ├── registry.ts   # Full icon path registry
+│   │   └── names.ts      # IconName union type
+│   ├── react/            # React AbsIcon component
+│   ├── vue/              # Vue AbsIcon component
+│   └── svelte/           # Svelte AbsIcon component
 │   ├── index.ts          # Main entry (auto-inits in browser)
 │   └── global.ts         # IIFE entry for browser <script>
 ├── dist/
-│   ├── index.js          # ESM build
-│   ├── index.cjs         # CommonJS build
-│   ├── index.d.ts        # TypeScript declarations
+│   ├── index.js              # ESM build (~86 KB)
+│   ├── index.cjs             # CommonJS build (~87 KB)
+│   ├── index.d.ts            # TypeScript declarations
+│   ├── icons-index.json      # Search index (239 KB, all icon metadata)
 │   ├── abscomfonts.iife.js   # Browser IIFE (~91 KB)
-│   └── abscomfonts.d.ts      # IIFE type declarations
+│   ├── abscomfonts.d.ts      # IIFE type declarations
+│   └── svg/                  # SVG bundle (~2.17 MB, tree-shakeable)
+│       ├── index.js
+│       └── index.d.ts
+│   ├── react/                # React AbsIcon component (~1 KB)
+│   │   ├── index.js
+│   │   └── index.d.ts
+│   ├── vue/                  # Vue AbsIcon component (~1 KB)
+│   │   ├── index.js
+│   │   └── index.d.ts
+│   └── svelte/               # Svelte AbsIcon component source
+├── icons/                 # Raw SVG files per icon (auto-generated)
 ├── fonts/
 │   ├── abs-brands-400.woff2
 │   ├── abs-solid-900.woff2
@@ -99,8 +175,15 @@ AbscomFonts/
 │   ├── social-cards.html      # Brand cards with click-to-copy
 │   ├── require-example.cjs
 │   ├── import-example.mjs
-│   └── typescript-example.ts
-├── css-classes.txt        # Complete class reference
+│   ├── typescript-example.ts
+│   ├── svg-import.mjs        # Node ESM SVG import
+│   ├── svg-typescript.ts     # TypeScript SVG import
+│   ├── svg-browser.html      # Browser live icon grid
+│   ├── svg-custom-element.html
+│   ├── react-import.mjs      # React AbsIcon component usage
+│   ├── vue-import.mjs        # Vue AbsIcon component usage
+│   └── svelte-import.svelte  # Svelte AbsIcon component usage
+├── src/icons.ts           # All icon codepoint mappings
 ├── abscomfonts.js         # Original single-file framework
 ├── package.json
 ├── tsconfig.json
@@ -120,6 +203,8 @@ AbscomFonts/
 | [Sizes](docs/sizes.md) | Fixed and relative sizing |
 | [Advanced Features](docs/advanced.md) | Transforms, z-index, hover effects |
 | [API Reference](docs/api.md) | Programmatic usage (ESM/CJS/TS) |
+| [Icon Search](docs/search.md) | Search, filter & metadata API |
+| [Framework Components](docs/framework-components.md) | React, Vue, Svelte components |
 | [Validation System](docs/validation.md) | Built-in usage validation |
 | [Troubleshooting](docs/troubleshooting.md) | Common issues and fixes |
 
