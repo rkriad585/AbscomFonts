@@ -119,7 +119,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^17.0.8",
     "opentype.js": "^2.0.0",
-    "prettier": "^3.9.4",
+    "prettier": "^3.9.5",
     "react": "^19.2.7",
     "semantic-release": "^25.0.5",
     "svelte": "^5.56.4",
